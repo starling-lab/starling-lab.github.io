@@ -20,4 +20,4 @@ In the age of 'Big Data', *scalability* is one of the key challenges both for le
 Thus, we develop performance-preserving **approximation strategies** for such counts, paving the way for scalable and efficient SRL.
 
 ### Publications
-* Das, M., Wu, Y., Khot, T., Kersting, K. & Natarajan, S., ["Scaling Lifted Probabilistic Inference and Learning Via Graph Databases"](https://starling.utdallas.edu/assets/pdfs/ApproxCounting.pdf), SIAM International Conference on Data Mining (SDM) 2016.
+* Das, M., Wu, Y., Khot, T., Kersting, K. & Natarajan, S., ["Scaling Lifted Probabilistic Inference and Learning Via Graph Databases"](/assets/pdfs/ApproxCounting.pdf), SIAM International Conference on Data Mining (SDM) 2016.
