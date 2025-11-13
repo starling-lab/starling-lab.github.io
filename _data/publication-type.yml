@@ -1,0 +1,12 @@
+- name: "Journal Papers"
+  id: journal-papers
+- name: "Conference Papers"
+  id: conference-papers
+- name: "Workshop Papers"
+  id: workshop-papers
+- name: "Books"
+  id: books
+- name: "Preprints"
+  id: preprints
+# - name: "Book Chapters"
+#   id: book-chapters

@@ -1,0 +1,8 @@
+# Emacs backup files
+*~
+
+_site/
+.sass-cache/
+.jekyll-metadata
+vendor/bundle/
+.bundle/
