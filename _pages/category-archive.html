@@ -1,0 +1,19 @@
+---
+layout: archive
+permalink: /categories/
+title: "Posts by Category"
+author_profile: true
+---
+
+{%assign pages = site.posts | concat: site.projects %}
+{% include group-by-array collection=pages field="categories" %}
+
+<div class="category">
+{% for category in group_names %}
+  {% assign posts = group_items[forloop.index0] %}
+  <h3 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h3>
+  {% for post in posts %}
+    {% include archive-single.html %}
+  {% endfor %}
+{% endfor %}
+</div>
