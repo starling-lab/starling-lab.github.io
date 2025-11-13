@@ -21,14 +21,25 @@ Contact: `{alexander.hayes/harsha.kokel}@utdallas.edu`
 
 ## Publishing the Website
 
-The website is automatically deployed to GitHub Pages when changes are pushed to the main/master branch.
+The website is automatically deployed to GitHub Pages via GitHub Actions when changes are pushed to the main/master branch.
+
+### Automatic Deployment Process
 
 1. Make your changes locally
 2. Test with `bundle exec jekyll serve`
-3. Commit and push to the repository
-4. GitHub Pages will automatically build and deploy the site
+3. Commit and push to the repository (or merge a PR to main/master)
+4. GitHub Actions will automatically build and deploy the site
+5. The site will be available at: https://starling-lab.github.io
 
-The site will be available at: https://starling-lab.github.io
+### Manual Deployment
+
+You can also trigger a manual deployment from the Actions tab in GitHub.
+
+### Configuration
+
+- The deployment workflow is defined in `.github/workflows/jekyll.yml`
+- GitHub Pages must be configured to use GitHub Actions as the source (in repository settings)
+- The workflow uses Ruby 3.1 for better compatibility with GitHub Pages dependencies
 
 ## Updates guide
 
