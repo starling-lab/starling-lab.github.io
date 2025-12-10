@@ -6,9 +6,9 @@
 
 StARLinG Lab's website hosted on GitHub Pages. Built with Jekyll, jQuery, and the minimal-mistakes Jekyll theme.
 
-Maintained by **[Alexander L. Hayes](https://github.com/batflyer)** and **[Harsha Kokel](https://github.com/harshakokel)**.
+Maintained by **[Pranuthi Tenali](https://github.com/Pranuthi23)**.
 
-Contact: `{alexander.hayes/harsha.kokel}@utdallas.edu`
+Contact: `{pranuthi.tenali}@utdallas.edu`
 
 ## Quick-start Guide (Linux and OSX)
 
