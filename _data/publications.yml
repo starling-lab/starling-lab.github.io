@@ -18,6 +18,13 @@
 ##   blog                        : link to project blog
 ##   poster                      : link to poster
 - publicationType: "conference-papers"
+  authors: [ "Devendra Singh Dhami", "Saurabh Mathur", "Siwen Yan", "Sriraam Natarajan" ]
+  year: "2025"
+  title: "Representing Multi-Relational Data via Statistical Relational Learning and Graph Convolutional Networks"
+  venue: "13th ACM IKDD International Conference on Data Science (CODS)"
+  url: "/assets/pdfs/cods_nesy_gnn.pdf"
+  
+- publicationType: "conference-papers"
   authors: [ "Saurabh Mathur", "Ranveer Singh", "Michael Skinner",  "Predrag Radivojac", "David M. Haas", "Lakshmi Raman", "Sriraam Natarajan" ]
   year: "2025"
   title: "LLMs for Causal Reasoning in Medicine? A Call for Caution"
