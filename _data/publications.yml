@@ -17,6 +17,15 @@
 ##   code                        : link to the code
 ##   blog                        : link to project blog
 ##   poster                      : link to poster
+
+
+- publicationType: "journal-papers"
+  authors: [ "Steven Braun", "Sahil Sidheekh", "Antonio Vergari", "Martin Mundt", "Sriraam Natarajan", "Kristian Kersting"]
+  year: "2025"
+  title: "Tractable Representation Learning with Probabilistic Circuits"
+  venue: "Transactions on Machine Learning Research (TMLR)"  
+  url: "https://arxiv.org/pdf/2507.04385"
+  
 - publicationType: "conference-papers"
   authors: [ "Devendra Singh Dhami", "Saurabh Mathur", "Siwen Yan", "Sriraam Natarajan" ]
   year: "2025"
