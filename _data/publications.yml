@@ -18,6 +18,19 @@
 ##   blog                        : link to project blog
 ##   poster                      : link to poster
 
+- publicationType: "conference-papers"
+  authors: [ "Hrithik Suresh", "Sahil Sidheekh", "Vishnu Shreeram M.P", "Sriraam Natarajan", "Narayanan C. Krishnan" ]
+  year: "2026"
+  title: "Tractable Sharpness-Aware Learning of Probabilistic Circuits"
+  venue: "The 40th Annual AAAI Conference on Artificial Intelligence (AAAI)"
+  url: "https://arxiv.org/pdf/2508.05537"
+
+- publicationType: "conference-papers"
+  authors: [ "Santhosh G S", "Akshay Govind S", "Gokul S Krishnan", "Balaraman Ravindran", "Sriraam Natarajan" ]
+  year: "2025"
+  title: "IndiCASA: A Dataset and Bias Evaluation Framework for LLMs Using Contrastive Embedding Similarity in the Indian Context"
+  venue: "8th AAAI/ACM Conference on AI, Ethics, and Society (AIES)"
+  url: "https://arxiv.org/abs/2510.02742"
 
 - publicationType: "journal-papers"
   authors: [ "Steven Braun", "Sahil Sidheekh", "Antonio Vergari", "Martin Mundt", "Sriraam Natarajan", "Kristian Kersting"]
