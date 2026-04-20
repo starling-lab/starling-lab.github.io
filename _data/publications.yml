@@ -19,6 +19,23 @@
 ##   poster                      : link to poster
 
 - publicationType: "preprints"
+  authors: ["Ranveer Singh", "Saurabh Mathur", "Michael A. Skinner", "Prasad Tadepalli", "Kristian Kersting", "Sriraam Natarajan"]
+  year: "2026"
+  title: "A Neurosymbolic Approach for Constructing Planning Domain Models from Clinical Narratives"
+
+  
+- publicationType: "preprints"
+  authors: [ "Ranveer Singh", "Pranuthi Tenali", "Saurabh Mathur", "Ameet Soni", "Vaishali Phatak", "Karla Lynch", "Daniel Murman", "Matthew Rizzo", "Sriraam Natarajan"]
+  year: "2026"
+  title: "A Neurosymbolic Approach to Extract Qualitative Knowledge for Early Diagnosis of Alzheimer’s Disease"
+  
+- publicationType: "conference-papers"
+  authors: [ "Ranveer Singh", "Saurabh Mathur", "Kavimayil P. Komarasamy", "Ameet Soni", "Cliff Whetung", "Wayne Warry", "Kristen Jacklin", "Melissa Blind", "Sriraam Natarajan"]
+  year: "2026"
+  venue: "24th International Conference on Artificial Intelligence in Medicine (AIME)"
+  title: "Causal Models with Tiny Data: The Case of Rural People Living with Dementia	"
+  
+- publicationType: "preprints"
   authors: [ "Sahil Sidheekh", "Sriraam Natarajan"]
   year: "2026"
   title: "Geometry-Aware Probabilistic Circuits via Voronoi Tessellations"
