@@ -18,11 +18,18 @@
 ##   blog                        : link to project blog
 ##   poster                      : link to poster
 
+
+- publicationType: "conference-papers"
+  authors: ["Fateme Golivand Darvishvand", "Michael Skinner", "Saurabh Mathur", "Ameet Soni", "Phillip Reeder", "Kristian Kersting", "Lakshmi Raman", "Sriraam Natarajan"]
+  year: "2026"
+  venue: "24th International Conference on Artificial Intelligence in Medicine (AIME)"
+  title: "Imitation learning for clinical decision support in pediatric ECMO"
+  url: "/assets/pdfs/ECMO_Policy.pdf"
+  
 - publicationType: "preprints"
   authors: ["Ranveer Singh", "Saurabh Mathur", "Michael A. Skinner", "Prasad Tadepalli", "Kristian Kersting", "Sriraam Natarajan"]
   year: "2026"
   title: "A Neurosymbolic Approach for Constructing Planning Domain Models from Clinical Narratives"
-
   
 - publicationType: "preprints"
   authors: [ "Ranveer Singh", "Pranuthi Tenali", "Saurabh Mathur", "Ameet Soni", "Vaishali Phatak", "Karla Lynch", "Daniel Murman", "Matthew Rizzo", "Sriraam Natarajan"]
@@ -33,7 +40,7 @@
   authors: [ "Ranveer Singh", "Saurabh Mathur", "Kavimayil P. Komarasamy", "Ameet Soni", "Cliff Whetung", "Wayne Warry", "Kristen Jacklin", "Melissa Blind", "Sriraam Natarajan"]
   year: "2026"
   venue: "24th International Conference on Artificial Intelligence in Medicine (AIME)"
-  title: "Causal Models with Tiny Data: The Case of Rural People Living with Dementia	"
+  title: "Causal Models with Tiny Data: The Case of Rural People Living with Dementia"
   
 - publicationType: "preprints"
   authors: [ "Sahil Sidheekh", "Sriraam Natarajan"]
@@ -47,9 +54,10 @@
   title: "Recursive Inference Machines for Neural Reasoning"
   url: "https://arxiv.org/abs/2603.05234"
   
-- publicationType: "preprints"
+- publicationType: "conference-papers"
   authors: [ "Pranuthi Tenali", "Sahil Sidheekh", "Saurabh Mathur", "Erik Blasch", "Kristian Kersting", "Sriraam Natarajan"]
   year: "2026"
+  venue: "The 29th International Conference on Information Fusion (FUSION)"
   title: "Context-specific Credibility-aware Multimodal Fusion with Conditional Probabilistic Circuits"
   url: "https://arxiv.org/abs/2603.26629"
   
@@ -136,6 +144,7 @@
   venue: "The 28th International Conference on Artificial Intelligence and Statistics (AISTATS)"
   url: "/assets/pdfs/AIStats_Credibility_MMF.pdf"
   blog: "/projects/Credibility-MultimodalFusion"
+  
    
 - publicationType: "conference-papers"
   authors: [ "Nikhilesh Prabhakar", "Ranveer Singh", "Harsha Kokel", "Sriraam Natarajan", "Prasad Tadepalli" ]
