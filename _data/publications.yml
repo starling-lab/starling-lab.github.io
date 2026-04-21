@@ -19,12 +19,7 @@
 ##   poster                      : link to poster
 
 
-- publicationType: "conference-papers"
-  authors: ["Fateme Golivand Darvishvand", "Michael Skinner", "Saurabh Mathur", "Ameet Soni", "Phillip Reeder", "Kristian Kersting", "Lakshmi Raman", "Sriraam Natarajan"]
-  year: "2026"
-  venue: "24th International Conference on Artificial Intelligence in Medicine (AIME)"
-  title: "Imitation learning for clinical decision support in pediatric ECMO"
-  url: "/assets/pdfs/ECMO_Policy.pdf"
+
   
 - publicationType: "preprints"
   authors: ["Ranveer Singh", "Saurabh Mathur", "Michael A. Skinner", "Prasad Tadepalli", "Kristian Kersting", "Sriraam Natarajan"]
@@ -35,6 +30,13 @@
   authors: [ "Ranveer Singh", "Pranuthi Tenali", "Saurabh Mathur", "Ameet Soni", "Vaishali Phatak", "Karla Lynch", "Daniel Murman", "Matthew Rizzo", "Sriraam Natarajan"]
   year: "2026"
   title: "A Neurosymbolic Approach to Extract Qualitative Knowledge for Early Diagnosis of Alzheimer’s Disease"
+
+- publicationType: "conference-papers"
+  authors: ["Fateme Golivand Darvishvand", "Michael Skinner", "Saurabh Mathur", "Ameet Soni", "Phillip Reeder", "Kristian Kersting", "Lakshmi Raman", "Sriraam Natarajan"]
+  year: "2026"
+  venue: "24th International Conference on Artificial Intelligence in Medicine (AIME)"
+  title: "Imitation learning for clinical decision support in pediatric ECMO"
+  url: "/assets/pdfs/ECMO_Policy.pdf"
   
 - publicationType: "conference-papers"
   authors: [ "Ranveer Singh", "Saurabh Mathur", "Kavimayil P. Komarasamy", "Ameet Soni", "Cliff Whetung", "Wayne Warry", "Kristen Jacklin", "Melissa Blind", "Sriraam Natarajan"]
