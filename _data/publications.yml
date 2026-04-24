@@ -96,14 +96,14 @@
   year: "2025"
   title: "Representing Multi-Relational Data via Statistical Relational Learning and Graph Convolutional Networks"
   venue: "13th ACM IKDD International Conference on Data Science (CODS)"
-  url: "/assets/pdfs/cods_nesy_gnn.pdf"
+  url: "https://dl.acm.org/doi/10.1145/3799830.3799847"
   
 - publicationType: "conference-papers"
   authors: [ "Saurabh Mathur", "Ranveer Singh", "Michael Skinner",  "Predrag Radivojac", "David M. Haas", "Lakshmi Raman", "Sriraam Natarajan" ]
   year: "2025"
   title: "LLMs for Causal Reasoning in Medicine? A Call for Caution"
   venue: "13th ACM IKDD International Conference on Data Science (CODS)"
-  url: "/assets/pdfs/cods_llm_causal_eval.pdf"
+  url: "https://dl.acm.org/doi/10.1145/3799830.3799848"
   
 - publicationType: "conference-papers"
   authors: [ "Fateme Golivand", "Hikaru Shindo", "Sahil Sidheekh",  "Kristian Kersting", "Sriraam Natarajan" ]
