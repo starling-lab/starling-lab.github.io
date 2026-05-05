@@ -43,6 +43,7 @@
   year: "2026"
   venue: "24th International Conference on Artificial Intelligence in Medicine (AIME)"
   title: "Causal Models with Tiny Data: The Case of Rural People Living with Dementia"
+  url: "/assets/pdfs/AIME2026_Lifespace.pdf
   
 - publicationType: "preprints"
   authors: [ "Sahil Sidheekh", "Sriraam Natarajan"]
