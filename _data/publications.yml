@@ -19,6 +19,11 @@
 ##   poster                      : link to poster
 
 
+  
+- publicationType: "preprints"
+  authors: ["Kavimayil P. Komarasamy", "Saurabh Mathur", "Ameet Soni", "David M. Haas", "Kristian Kersting", "Sriraam Natarajan"]
+  year: "2026"
+  title: "Causal Modeling of Adverse Pregnancy Outcomes via Adaptive LLM Proposals"
 
   
 - publicationType: "preprints"
@@ -45,10 +50,11 @@
   title: "Causal Models with Tiny Data: The Case of Rural People Living with Dementia"
   url: "/assets/pdfs/AIME2026_Lifespace.pdf"
   
-- publicationType: "preprints"
+- publicationType: "conference-papers"
   authors: [ "Sahil Sidheekh", "Sriraam Natarajan"]
   year: "2026"
   title: "Geometry-Aware Probabilistic Circuits via Voronoi Tessellations"
+  venue: "The 43rd International Conference on Machine Learning (ICML)"
   url: "https://arxiv.org/abs/2603.11946"
   
 - publicationType: "preprints"
