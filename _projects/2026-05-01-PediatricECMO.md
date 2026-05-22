@@ -8,9 +8,9 @@ category: precision-health
 description: 'by Fateme Golivand Darvishvand, Michael Skinner, Saurabh Mathur, Ameet Soni, Phillip Reeder, Kristian Kersting, Lakshmi Raman, Sriraam Natarajan, In AIME 2026'
 author: ['Fateme Golivand Darvishvand']
 header:
-  image: /assets/images/project/pediatric-ecmo.png
-  teaser: /assets/images/project/pediatric-ecmo.png
-excerpt: '<i>Fateme Golivand Darvishvand, Michael Skinner, Saurabh Mathur, Ameet Soni, Phillip Reeder, Kristian Kersting, Lakshmi Raman, Sriraam Natarajan</i><br/>UT Dallas &nbsp;&middot;&nbsp; TU Darmstadt &nbsp;&middot;&nbsp; Swarthmore &nbsp;&middot;&nbsp; UT Southwestern<br/><br/>{::nomarkdown}<a href="https://github.com/fateme-gd/ImitationLearning_ECMO" class="btn btn--light-outline btn--large"><i class="fas fa-code"></i> Code</a> <a href="/assets/pdfs/PediatricECMOShort.pdf" class="btn btn--light-outline btn--large"><i class="fas fa-file-pdf"></i>Extended version</a><a href="https://arxiv.org/abs/2605.16175v1" class="btn btn--light-outline btn--large"><i class="fas fa-file-pdf"></i>Extended version</a> <a href="https://github.com/fateme-gd/ImitationLearning_ECMO/blob/master/Supplementary.pdf" class="btn btn--light-outline btn--large"><i class="fas fa-paperclip"></i> Supplementary</a>{:/nomarkdown}'
+  image: /assets/images/project/ECMO_fig.png
+  teaser: /assets/images/project/ECMO_fig.png
+excerpt: '<i>Fateme Golivand Darvishvand, Michael Skinner, Saurabh Mathur, Ameet Soni, Phillip Reeder, Kristian Kersting, Lakshmi Raman, Sriraam Natarajan</i><br/>UT Dallas &nbsp;&middot;&nbsp; TU Darmstadt &nbsp;&middot;&nbsp; Swarthmore &nbsp;&middot;&nbsp; UT Southwestern<br/><br/>{::nomarkdown}<a href="https://github.com/fateme-gd/ImitationLearning_ECMO" class="btn btn--light-outline btn--large"><i class="fas fa-code"></i> Code</a> <a href="/assets/pdfs/PediatricECMOShort.pdf" class="btn btn--light-outline btn--large"><i class="fas fa-file-pdf"></i> Paper</a><a href="https://arxiv.org/abs/2605.16175v1" class="btn btn--light-outline btn--large"><i class="fas fa-file-pdf"></i> Extended version</a><a href="https://github.com/fateme-gd/ImitationLearning_ECMO/blob/master/Supplementary.pdf" class="btn btn--light-outline btn--large"><i class="fas fa-paperclip"></i> Supplementary</a>{:/nomarkdown}'
 toc: true
 header:
   overlay_color: SteelBlue
