@@ -41,7 +41,9 @@
   year: "2026"
   venue: "24th International Conference on Artificial Intelligence in Medicine (AIME)"
   title: "Imitation learning for clinical decision support in pediatric ECMO"
-  url: "/assets/pdfs/ECMO_Policy.pdf"
+  url: "https://arxiv.org/abs/2605.16175v1"
+  blog: "/papers/PediatricECMO/"
+  
   
 - publicationType: "conference-papers"
   authors: [ "Ranveer Singh", "Saurabh Mathur", "Kavimayil P. Komarasamy", "Ameet Soni", "Cliff Whetung", "Wayne Warry", "Kristen Jacklin", "Melissa Blind", "Sriraam Natarajan"]
