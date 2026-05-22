@@ -6,6 +6,7 @@ permalink: /papers/PediatricECMO/
 title: "Imitation Learning for Clinical Decision Support in Pediatric ECMO"
 category: precision-health
 description: 'by Fateme Golivand Darvishvand, Michael Skinner, Saurabh Mathur, Ameet Soni, Phillip Reeder, Kristian Kersting, Lakshmi Raman, Sriraam Natarajan, In AIME 2026'
+author: ['Fateme Golivand Darvishvand']
 excerpt: '<i>Fateme Golivand Darvishvand, Michael Skinner, Saurabh Mathur, Ameet Soni, Phillip Reeder, Kristian Kersting, Lakshmi Raman, Sriraam Natarajan</i><br/>UT Dallas &nbsp;&middot;&nbsp; TU Darmstadt &nbsp;&middot;&nbsp; Swarthmore &nbsp;&middot;&nbsp; UT Southwestern<br/><br/>{::nomarkdown}<a href="https://github.com/fateme-gd/ImitationLearning_ECMO" class="btn btn--light-outline btn--large"><i class="fas fa-code"></i> Code</a> <a href="https://github.com/fateme-gd/ImitationLearning_ECMO/blob/master/Supplementary.pdf" class="btn btn--light-outline btn--large"><i class="fas fa-paperclip"></i> Supplementary</a>{:/nomarkdown}'
 toc: true
 header:
@@ -32,13 +33,16 @@ Building decision support systems for this domain is complicated by the incomple
 
 Unlike standard reinforcement learning, which requires active environmental interaction, offline imitation learning allows us to exploit expert demonstrations already present in historical clinical records.
 
-![Pipeline for Learning Clinical Behavior from Unlabeled ECMO Trajectories](/assets/images/project/ecmo_il_pipeline.png)
-
-*Fig. 1. Pipeline for learning clinical behavior from unlabeled ECMO trajectories. Raw physiologic telemetry is processed into discrete action labels using physician-defined thresholds. These discovered actions formulate an imitation learning task: predicting clinician "knob" adjustments from patient state.*
+<div align="center">
+  <img src="/assets/images/project/ecmo_il_pipeline.png" width="760" />
+  <p><i>Fig. 1. Pipeline for learning clinical behavior from unlabeled ECMO trajectories. Raw physiologic telemetry is processed into discrete action labels using physician-defined thresholds. These discovered actions formulate an imitation learning task: predicting clinician "knob" adjustments from patient state.</i></p>
+</div>
 
 ### Actionable features (knobs)
 
 A discrete action is identified when the absolute change within a 60-minute window exceeds the specified threshold.
+
+<div align="center">
 
 | Knob | Threshold | Action space |
 |------|-----------|--------------|
@@ -47,9 +51,13 @@ A discrete action is identified when the absolute change within a 60-minute wind
 | SpO₂ | 5 % | Increase / Same / Decrease |
 | FiO₂ | 10 % | Increase / Same / Decrease |
 
+</div>
+
 ## Pediatric ECMO cohort
 
 78 pediatric ECMO trajectories obtained from Children's Medical Center, Dallas. Cases with congenital heart disease were excluded due to the complexity of specialized management.
+
+<div align="center">
 
 | Metric | Value |
 |--------|-------|
@@ -61,17 +69,22 @@ A discrete action is identified when the absolute change within a 60-minute wind
 | Source | Children's Medical Center, Dallas |
 | Exclusion criterion | Congenital Heart Disease cases |
 
+</div>
+
 ### State features
 
 For each variable, we include the mean value within a 60-minute window and its delta relative to the previous window. Heart rate (HR) and mean arterial pressure (ARTm) are age-normalized.
 
-**Hemodynamics:** Mean Arterial Pressure (ARTm), Heart Rate (HR), SpO₂, Cerebral Oximetry (rSO₂-1, rSO₂-2)
+<div align="center">
 
-**ECMO Circuit:** Blood Flow (mL/kg/min), Sweep Gas: CO₂ Flow, Sweep Gas: O₂ Flow, FiO₂ -- ECMO, Volume Sensor
+| Category | Features |
+|----------|----------|
+| Hemodynamics | Mean Arterial Pressure (ARTm), Heart Rate (HR), SpO₂, Cerebral Oximetry (rSO₂-1, rSO₂-2) |
+| ECMO Circuit | Blood Flow (mL/kg/min), Sweep Gas CO₂ Flow, Sweep Gas O₂ Flow, FiO₂ -- ECMO, Volume Sensor |
+| Ventilator | Mean Airway Pressure (PAW), PEEP, Oxygen Concentration (FiO₂), Tidal Volume, End-tidal CO₂ (etCO₂) |
+| Laboratory | Arterial PO₂, PCO₂, pH, Base Excess, Lactate, Ionized Calcium, Total CO₂, INR |
 
-**Ventilator:** Mean Airway Pressure (PAW), PEEP, Oxygen Concentration (FiO₂), Tidal Volume, End-tidal CO₂ (etCO₂)
-
-**Laboratory:** Arterial PO₂, PCO₂, pH, Base Excess, Lactate, Ionized Calcium, Total CO₂, INR
+</div>
 
 ## Evaluation across three questions
 
@@ -79,23 +92,25 @@ We evaluate generalization performance, calibration, and alignment with clinicia
 
 ### Q1: Do policies generalize?
 
-TabPFN achieves the highest mean balanced accuracy and macro-F1 across the majority of the actions. The consistent improvement in balanced accuracy suggests that TabPFN is more resilient to the class imbalance inherent to this setting and generalizes more effectively to held-out patients. Ranking consistent across all four action knobs: PO₂, PCO₂, SpO₂, FiO₂.
+TabPFN achieves the highest mean balanced accuracy across the majority of the actions. The consistent improvement in balanced accuracy suggests that TabPFN is more resilient to the class imbalance inherent to this setting and generalizes more effectively to held-out patients. Ranking consistent across all four action knobs: PO₂, PCO₂, SpO₂, FiO₂.
+
+<div align="center">
+  <img src="/assets/images/project/ecmo_f1_ranking.png" width="640" />
+</div>
 
 ### Q2: Are policies calibrated?
 
-Expected Calibration Error (ECE) summarizes the average gap between a model's stated confidence and its observed accuracy across probability bins. Lower ECE indicates more reliable estimates of uncertainty.
+Expected Calibration Error (ECE) summarizes the average gap between a model's stated confidence and its observed accuracy across probability bins. Lower ECE indicates more reliable estimates of uncertainty. TabPFN consistently achieves a lower ECE than the MLP and XGBoost baselines. The posterior probabilities produced by TabPFN's in-context inference closely match its empirical accuracy, providing reliable confidence estimates.
 
-| Model | ECE |
-|-------|-----|
-| TabPFN | 0.0205 |
-| XGBoost | 0.1261 |
-| MLP | 0.2673 |
-
-TabPFN consistently achieves a lower ECE than the MLP and XGBoost baselines. The posterior probabilities produced by TabPFN's in-context inference closely match its empirical accuracy, providing reliable confidence estimates.
+<div align="center">
+  <img src="/assets/images/project/ecmo_ece.png" width="640" />
+</div>
 
 ### Q3: Where do policies disagree with clinicians?
 
 We identify regions of the state space with the highest model-expert disagreement by training shallow decision trees on the residual errors of their predicted probabilities. The table shows the most frequent features appearing in high-disagreement states, reported as the number of times each feature was selected across all knobs.
+
+<div align="center">
 
 | Feature | MLP | TabPFN | XGBoost |
 |---------|-----|--------|---------|
@@ -106,23 +121,25 @@ We identify regions of the state space with the highest model-expert disagreemen
 | PCO₂ | 2 | 3 | 1 |
 | Lactate | 3 | 1 | 1 |
 
+</div>
+
 Oxygenation-related signals, specifically FiO₂ and SpO₂, consistently define the boundaries where model predictions deviate from clinician actions. The models deviate from clinician actions in different regions of the state space, motivating future expert review of high-disagreement states.
 
-## What we found
-
-### TabPFN as a clinician-behavior baseline
+## Conclusion
 
 We presented an imitation learning framework to model clinical decision-making in pediatric ECMO. Our framework maps patient states to concurrent clinical interventions by inferring action labels from patient trajectories and employing a factorized, hierarchical policy architecture.
 
 Our empirical evaluation finds that TabPFN consistently outperforms traditional gradient-based baselines, suggesting that it can serve as an effective clinician-behavior baseline in challenging critical care settings. TabPFN encodes a broad tabular prior from its extensive pretraining on millions of synthetic datasets, enabling probabilistic inference in a single forward pass without requiring dataset-specific gradient-based training or hyperparameter tuning.
 
-Future directions:
+### Future work
 
 - Analyze whether model-clinician disagreements correlate with patient outcomes, such as risk of neurological injury.
 - Explore policy improvement by incorporating expert-defined rewards.
 - Perform a systematic analysis on the high-disagreement extracted rules and use them to elicit expert feedback for policy refinement.
 
 ## Citation
+
+If you build on or use portions of this work, please cite:
 
 ```bibtex
 @inproceedings{golivand2026ecmo,
@@ -139,4 +156,4 @@ Future directions:
 
 ## Acknowledgements
 
-Supported by NIH award R01NS133142 &middot; UT Dallas &middot; TU Darmstadt &middot; Swarthmore &middot; UT Southwestern &middot; fateme.golivanddarvishvand@utdallas.edu
+We gratefully acknowledge the support of NIH award R01NS133142.
