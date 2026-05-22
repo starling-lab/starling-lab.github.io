@@ -34,57 +34,58 @@ Building decision support systems for this domain is complicated by the incomple
 Unlike standard reinforcement learning, which requires active environmental interaction, offline imitation learning allows us to exploit expert demonstrations already present in historical clinical records.
 
 <div align="center">
-  <img src="/assets/images/project/ecmo_il_pipeline.png" width="760" />
-  <p><i>Fig. 1. Pipeline for learning clinical behavior from unlabeled ECMO trajectories. Raw physiologic telemetry is processed into discrete action labels using physician-defined thresholds. These discovered actions formulate an imitation learning task: predicting clinician "knob" adjustments from patient state.</i></p>
+  <img src="/assets/images/project/ecmo_il_pipeline.png" width="760" /><br/>
+  <i>Fig. 1. Pipeline for learning clinical behavior from unlabeled ECMO trajectories. Raw physiologic telemetry is processed into discrete action labels using physician-defined thresholds. These discovered actions formulate an imitation learning task: predicting clinician "knob" adjustments from patient state.</i>
 </div>
+<br/>
 
 ### Actionable features (knobs)
 
 A discrete action is identified when the absolute change within a 60-minute window exceeds the specified threshold.
 
-<div align="center">
-
-| Knob | Threshold | Action space |
-|------|-----------|--------------|
-| Arterial PO₂ | 25 mmHg | Increase / Same / Decrease |
-| Arterial PCO₂ | 5 mmHg | Increase / Same / Decrease |
-| SpO₂ | 5 % | Increase / Same / Decrease |
-| FiO₂ | 10 % | Increase / Same / Decrease |
-
-</div>
+<table style="margin-left:auto;margin-right:auto;">
+  <thead><tr><th>Knob</th><th>Threshold</th><th>Action space</th></tr></thead>
+  <tbody>
+    <tr><td>Arterial PO₂</td><td>25 mmHg</td><td>Increase / Same / Decrease</td></tr>
+    <tr><td>Arterial PCO₂</td><td>5 mmHg</td><td>Increase / Same / Decrease</td></tr>
+    <tr><td>SpO₂</td><td>5 %</td><td>Increase / Same / Decrease</td></tr>
+    <tr><td>FiO₂</td><td>10 %</td><td>Increase / Same / Decrease</td></tr>
+  </tbody>
+</table>
+<br/>
 
 ## Pediatric ECMO cohort
 
 78 pediatric ECMO trajectories obtained from Children's Medical Center, Dallas. Cases with congenital heart disease were excluded due to the complexity of specialized management.
 
-<div align="center">
-
-| Metric | Value |
-|--------|-------|
-| Patient trajectories | 78 |
-| Average patient age | 4.66 years |
-| Average trajectory length | 215 hours |
-| State features per hour | 48 (23 clinical variables + deltas + ECMO type + on-ECMO indicator) |
-| Actionable knobs | 4 (PO₂, PCO₂, SpO₂, FiO₂) |
-| Source | Children's Medical Center, Dallas |
-| Exclusion criterion | Congenital Heart Disease cases |
-
-</div>
+<table style="margin-left:auto;margin-right:auto;">
+  <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>Patient trajectories</td><td>78</td></tr>
+    <tr><td>Average patient age</td><td>4.66 years</td></tr>
+    <tr><td>Average trajectory length</td><td>215 hours</td></tr>
+    <tr><td>State features per hour</td><td>48 (23 clinical variables + deltas + ECMO type + on-ECMO indicator)</td></tr>
+    <tr><td>Actionable knobs</td><td>4 (PO₂, PCO₂, SpO₂, FiO₂)</td></tr>
+    <tr><td>Source</td><td>Children's Medical Center, Dallas</td></tr>
+    <tr><td>Exclusion criterion</td><td>Congenital Heart Disease cases</td></tr>
+  </tbody>
+</table>
+<br/>
 
 ### State features
 
 For each variable, we include the mean value within a 60-minute window and its delta relative to the previous window. Heart rate (HR) and mean arterial pressure (ARTm) are age-normalized.
 
-<div align="center">
-
-| Category | Features |
-|----------|----------|
-| Hemodynamics | Mean Arterial Pressure (ARTm), Heart Rate (HR), SpO₂, Cerebral Oximetry (rSO₂-1, rSO₂-2) |
-| ECMO Circuit | Blood Flow (mL/kg/min), Sweep Gas CO₂ Flow, Sweep Gas O₂ Flow, FiO₂ -- ECMO, Volume Sensor |
-| Ventilator | Mean Airway Pressure (PAW), PEEP, Oxygen Concentration (FiO₂), Tidal Volume, End-tidal CO₂ (etCO₂) |
-| Laboratory | Arterial PO₂, PCO₂, pH, Base Excess, Lactate, Ionized Calcium, Total CO₂, INR |
-
-</div>
+<table style="margin-left:auto;margin-right:auto;">
+  <thead><tr><th>Category</th><th>Features</th></tr></thead>
+  <tbody>
+    <tr><td>Hemodynamics</td><td>Mean Arterial Pressure (ARTm), Heart Rate (HR), SpO₂, Cerebral Oximetry (rSO₂-1, rSO₂-2)</td></tr>
+    <tr><td>ECMO Circuit</td><td>Blood Flow (mL/kg/min), Sweep Gas CO₂ Flow, Sweep Gas O₂ Flow, FiO₂ &ndash; ECMO, Volume Sensor</td></tr>
+    <tr><td>Ventilator</td><td>Mean Airway Pressure (PAW), PEEP, Oxygen Concentration (FiO₂), Tidal Volume, End-tidal CO₂ (etCO₂)</td></tr>
+    <tr><td>Laboratory</td><td>Arterial PO₂, PCO₂, pH, Base Excess, Lactate, Ionized Calcium, Total CO₂, INR</td></tr>
+  </tbody>
+</table>
+<br/>
 
 ## Evaluation across three questions
 
@@ -97,6 +98,7 @@ TabPFN achieves the highest mean balanced accuracy across the majority of the ac
 <div align="center">
   <img src="/assets/images/project/ecmo_f1_ranking.png" width="640" />
 </div>
+<br/>
 
 ### Q2: Are policies calibrated?
 
@@ -105,23 +107,24 @@ Expected Calibration Error (ECE) summarizes the average gap between a model's st
 <div align="center">
   <img src="/assets/images/project/ecmo_ece.png" width="640" />
 </div>
+<br/>
 
 ### Q3: Where do policies disagree with clinicians?
 
 We identify regions of the state space with the highest model-expert disagreement by training shallow decision trees on the residual errors of their predicted probabilities. The table shows the most frequent features appearing in high-disagreement states, reported as the number of times each feature was selected across all knobs.
 
-<div align="center">
-
-| Feature | MLP | TabPFN | XGBoost |
-|---------|-----|--------|---------|
-| FiO₂ | 2 | 5 | 5 |
-| SpO₂ | 1 | 5 | 3 |
-| pH | 2 | 3 | 2 |
-| PO₂ | 3 | 2 | 1 |
-| PCO₂ | 2 | 3 | 1 |
-| Lactate | 3 | 1 | 1 |
-
-</div>
+<table style="margin-left:auto;margin-right:auto;">
+  <thead><tr><th>Feature</th><th>MLP</th><th>TabPFN</th><th>XGBoost</th></tr></thead>
+  <tbody>
+    <tr><td>FiO₂</td><td>2</td><td>5</td><td>5</td></tr>
+    <tr><td>SpO₂</td><td>1</td><td>5</td><td>3</td></tr>
+    <tr><td>pH</td><td>2</td><td>3</td><td>2</td></tr>
+    <tr><td>PO₂</td><td>3</td><td>2</td><td>1</td></tr>
+    <tr><td>PCO₂</td><td>2</td><td>3</td><td>1</td></tr>
+    <tr><td>Lactate</td><td>3</td><td>1</td><td>1</td></tr>
+  </tbody>
+</table>
+<br/>
 
 Oxygenation-related signals, specifically FiO₂ and SpO₂, consistently define the boundaries where model predictions deviate from clinician actions. The models deviate from clinician actions in different regions of the state space, motivating future expert review of high-disagreement states.
 
