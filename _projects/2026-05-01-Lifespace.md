@@ -19,17 +19,17 @@ redirect_from:
   - /projects/Lifespace/
 ---
 
-> We asked domain experts and three LLMs to construct causal graphs for life-space mobility in rural dementia patients. They agreed on most edges, but disagreed on one that reveals a fundamentally different view of what matters most in dementia care. When tested against real data, none fit well — but they failed in different ways.
+> We asked domain experts and three LLMs to construct causal graphs for life-space mobility in rural dementia patients. They agreed on most edges, but disagreed on one that reveals a fundamentally different view of what matters most in dementia care. When tested against real data, none fit well, but they failed in different ways.
 
 ## Problem: reasoning about interventions without enough data
 
-Developing interventions to improve outcomes requires causally modeling the relationship between life-space mobility and relevant demographic and environmental variables. For rural and Indigenous populations living with dementia, this is a particularly hard problem — the data needed for standard causal discovery simply does not exist.
+Developing interventions to improve outcomes requires causally modeling the relationship between life-space mobility and relevant demographic and environmental variables. This is a particularly hard problem for rural and Indigenous populations living with dementia, because the data needed for standard causal discovery does not exist.
 
-Life-space mobility captures a person's physical and social environment, movement, and daily activities. A decrease in life-space is associated with various measures of declining health in older adults, including cognitive decline. Yet Life-Space Assessments (LSAs) have primarily focused on urban populations, limiting their applicability to rural or Indigenous settings where dementia risk is higher.
+Life-space mobility captures a person's physical and social environment, movement, and daily activities. A decrease in life-space is associated with various measures of declining health in older adults, including cognitive decline. However, Life-Space Assessments (LSAs) have primarily focused on urban populations, limiting their applicability to rural or Indigenous settings.
 
 ## Approach: four methods for causal graph construction
 
-We study several approaches for building causal graphs (shown in [Figure 1](#fig-1)) under this data-scarce setting, then compare them structurally and evaluate their empirical validity.
+We consider a tiny dataset of 20 patients in rural and Indigenous communities in northern Minnesota, USA, and Ontario, Canada. For this domain, we study several approaches for building causal graphs (shown in [Figure 1](#fig-1)). We compare them structurally and evaluate their empirical validity.
 
 <div id="fig-1" align="center">
   <img src="/assets/images/project/lifespace_graph_construction_method.png" width="760" /><br/>
@@ -59,7 +59,7 @@ Continuous variables were binarized using expert-provided or sample mean-based t
 
 ## Findings: consensus, contradictions, and incompatibility with data
 
-The LLMs agree on six direct causal relationships. Experts agree with five — but invert the sixth in a way that reveals a fundamental difference in modeling perspectives.
+The LLMs agree on six direct causal relationships. Experts agree with five, but invert the sixth in a way that reveals a fundamental difference in modeling perspectives.
 
 <div id="fig-2" align="center">
   <img src="/assets/images/project/LifeSpaceCausalGraph.png" width="760" /><br/>
@@ -69,7 +69,7 @@ The LLMs agree on six direct causal relationships. Experts agree with five — b
 
 > Experts Say
 > **Life-space score (LS)** is the final sink.  
-> Experts treat LS as the patient outcome to improve — and include sex and education as causal drivers.
+> Experts treat LS as the patient outcome to improve, and include sex and education as causal drivers.
 
 > LLMs Say
 > **Caregiver burden (TB)** is the final sink.  
@@ -94,7 +94,7 @@ We treat each graph as a model predicting conditional independencies (CIs) and t
 </table>
 <br/>
 
-Refinement eliminated nearly all edges, leaving fewer than three in the final graphs. The data-driven FCI baseline identified no causal edges — only three undirected associations. Neither LLM-generated nor expert-constructed graphs are compatible with the data, but **they are incompatible in different ways**, illustrating the structural differences between expert and LLM-based causal models.
+Refinement eliminated nearly all edges, leaving fewer than three in the final graphs. The data-driven FCI baseline identified no causal edges. It identified only three undirected associations. Neither LLM-generated nor expert-constructed graphs are compatible with the data, but **they are incompatible in different ways**, illustrating the structural differences between expert and LLM-based causal models.
 
 ## Open questions
 
