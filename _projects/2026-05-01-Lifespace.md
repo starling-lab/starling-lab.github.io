@@ -2,7 +2,7 @@
 layout: splash
 classes:
   - narrow
-permalink: /papers/RuralDementiaLifespace/
+permalink: /papers/Lifespace/
 title: "Causal Models with Tiny Data: The Case of Rural People Living with Dementia"
 category: precision-health
 description: 'by Ranveer Singh, Saurabh Mathur, Kavimayil P. Komarasamy, Ameet Soni, Cliff Whetung, Wayne Warry, Kristen Jacklin, Melissa Blind, Sriraam Natarajan, In AIME 2026'
@@ -10,11 +10,13 @@ author: ['Ranveer Singh']
 excerpt: '<i>Ranveer Singh, Saurabh Mathur, Kavimayil P. Komarasamy, Ameet Soni, Cliff Whetung, Wayne Warry, Kristen Jacklin, Melissa Blind, Sriraam Natarajan</i><br/>UT Dallas &nbsp;&middot;&nbsp; TU Darmstadt &nbsp;&middot;&nbsp; Swarthmore &nbsp;&middot;&nbsp; University of Minnesota Medical School<br/><br/>{::nomarkdown}<a href="https://starling-lab.github.io/assets/pdfs/AIME2026_Lifespace.pdf" class="btn btn--light-outline btn--large"><i class="fas fa-file-pdf"></i> Paper</a>{:/nomarkdown}'
 toc: true
 header:
+  image: /assets/images/project/LifeSpaceCausalGraph.png
+  teaser: /assets/images/project/LifeSpaceCausalGraph.png
   overlay_color: SteelBlue
 redirect_from:
-  - /papers/ruraldementialifespace/
-  - /projects/ruraldementialifespace/
-  - /projects/RuralDementiaLifespace/
+  - /papers/lifespace/
+  - /projects/lifespace/
+  - /projects/Lifespace/
 ---
 
 > We asked domain experts and three LLMs to construct causal graphs for life-space mobility in rural dementia patients. They agreed on most edges, but disagreed on one that reveals a fundamentally different view of what matters most in dementia care. When tested against real data, none fit well — but they failed in different ways.
@@ -30,7 +32,7 @@ Life-space mobility captures a person's physical and social environment, movemen
 We study several approaches for building causal graphs (shown in [Figure 1](#fig-1)) under this data-scarce setting, then compare them structurally and evaluate their empirical validity.
 
 <div id="fig-1" align="center">
-  <img src="lifespace_graph_construction_method.png" width="760" /><br/>
+  <img src="/assets/images/project/lifespace_graph_construction_method.png" width="760" /><br/>
   <i>Fig. 1.  Causal graph construction methods, including expert elicitation (1), LLM consensus (Claude, Gemini, GPT) (2), hybrid subtractive refinement (3), and a data-driven FCI baseline (4). </i>
 </div>
 <br/>
@@ -60,7 +62,7 @@ Continuous variables were binarized using expert-provided or sample mean-based t
 The LLMs agree on six direct causal relationships. Experts agree with five — but invert the sixth in a way that reveals a fundamental difference in modeling perspectives.
 
 <div id="fig-2" align="center">
-  <img src="LifeSpaceCausalGraph.png" width="760" /><br/>
+  <img src="/assets/images/project/LifeSpaceCausalGraph.png" width="760" /><br/>
   <i>Fig. 2. Expert-constructed (left) vs. LLM consensus (right) causal graphs. Gray arrows = shared edges; blue dashed arrows = expert-only socioeconomic pathways; red arrow = LLM-only inverted key edge; greyed nodes = variables excluded by LLMs. The key structural disagreement: experts place <b>TB→LS</b>; LLMs place <b>LS→TB</b>.</i>
 </div>
 <br/>
