@@ -7,7 +7,7 @@ title: "Causal Models with Tiny Data: The Case of Rural People Living with Demen
 category: precision-health
 description: 'by Ranveer Singh, Saurabh Mathur, Kavimayil P. Komarasamy, Ameet Soni, Cliff Whetung, Wayne Warry, Kristen Jacklin, Melissa Blind, Sriraam Natarajan, In AIME 2026'
 author: ['Ranveer Singh']
-excerpt: '<i>Ranveer Singh, Saurabh Mathur, Kavimayil P. Komarasamy, Ameet Soni, Cliff Whetung, Wayne Warry, Kristen Jacklin, Melissa Blind, Sriraam Natarajan</i><br/>UT Dallas &nbsp;&middot;&nbsp; TU Darmstadt &nbsp;&middot;&nbsp; Swarthmore &nbsp;&middot;&nbsp; University of Minnesota Medical School<br/><br/>{::nomarkdown}<a href="https://starling-lab.github.io/assets/pdfs/AIME2026_Lifespace.pdf" class="btn btn--light-outline btn--large"><i class="fas fa-file-pdf"></i> Paper</a>{:/nomarkdown}'
+excerpt: '<i>Ranveer Singh, Saurabh Mathur, Kavimayil P. Komarasamy, Ameet Soni, Cliff Whetung, Wayne Warry, Kristen Jacklin, Melissa Blind, Sriraam Natarajan</i><br/>UT Dallas &nbsp;&middot;&nbsp; TU Darmstadt &nbsp;&middot;&nbsp; Swarthmore &nbsp;&middot;&nbsp; University of Minnesota Medical School<br/><br/>{::nomarkdown}<a href="https://starling-lab.github.io/assets/pdfs/AIME2026_Lifespace.pdf" class="btn btn--light-outline btn--large"><i class="fas fa-file-pdf"></i> Paper</a> <a href="https://github.com/s-ranveer/AIME_Lifespace" class="btn btn--light-outline btn--large"><i class="fab fa-github"></i> Code</a>{:/nomarkdown}'
 toc: true
 header:
   image: /assets/images/project/LifeSpaceCausalGraph.png
