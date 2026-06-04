@@ -23,9 +23,9 @@ redirect_from:
 
 ## Problem: reasoning about interventions without enough data
 
-Developing interventions to improve outcomes requires causally modeling the relationship between life-space mobility and relevant demographic and environmental variables. This is a particularly hard problem for rural and Indigenous populations living with dementia, because the data needed for standard causal discovery does not exist.
+Life-space mobility captures a person's physical and social environment, movement, and daily activities. A decrease in life-space is associated with various measures of declining health in older adults, including cognitive decline. However, Life-Space Assessments (LSAs) have primarily focused on urban populations, limiting their applicability to rural or Indigenous settings where dementia risk is higher.
 
-Life-space mobility captures a person's physical and social environment, movement, and daily activities. A decrease in life-space is associated with various measures of declining health in older adults, including cognitive decline. However, Life-Space Assessments (LSAs) have primarily focused on urban populations, limiting their applicability to rural or Indigenous settings.
+Developing interventions to improve outcomes for these populations requires causally modeling the relationship between life-space mobility and relevant demographic and environmental variables. This is a particularly hard problem, because the data needed for standard causal discovery does not exist.
 
 ## Approach: four methods for causal graph construction
 
@@ -96,15 +96,14 @@ We treat each graph as a model predicting conditional independencies (CIs) and t
 
 Refinement eliminated nearly all edges, leaving fewer than three in the final graphs. The data-driven FCI baseline identified no causal edges. It identified only three undirected associations. Neither LLM-generated nor expert-constructed graphs are compatible with the data, but **they are incompatible in different ways**, illustrating the structural differences between expert and LLM-based causal models.
 
-## Open questions
+## Conclusion
+
+Our analysis of the differences among sources of causal knowledge — domain experts, LLMs, and tiny datasets — provides a foundation for hybrid causal models. The TB–LS edge dispute illustrates that LLMs and experts encode meaningfully different assumptions about what the primary patient outcome is and which variables drive it. Understanding this interplay is essential for developing robust clinical decision-support systems in data-scarce, underserved populations. Three open questions follow directly from our findings
 
 - **Is the TB–LS edge bidirectional?** The disagreement may reflect a genuine feedback loop requiring temporal disaggregation rather than a single directed edge.
 - **Can high-disagreement regions guide targeted elicitation?** The structural differences identified here could be used to solicit more focused expert feedback and build better causal priors.
 - **How do causal models for rural and Indigenous populations differ from urban ones?** Understanding these differences has direct implications for intervention design in underserved communities.
 
-## Conclusion
-
-Our analysis of the differences among sources of causal knowledge — domain experts, LLMs, and tiny datasets — provides a foundation for hybrid causal models. The TB–LS edge dispute illustrates that LLMs and experts encode meaningfully different assumptions about what the primary patient outcome is and which variables drive it. Understanding this interplay is essential for developing robust clinical decision-support systems in data-scarce, underserved populations.
 
 ## Citation
 
