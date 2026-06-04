@@ -63,7 +63,7 @@ The LLMs agree on six direct causal relationships. Experts agree with five, but 
 
 <div id="fig-2" align="center">
   <img src="/assets/images/project/LifeSpaceCausalGraph.png" width="760" /><br/>
-  <i>Fig. 2. Expert-constructed (left) vs. LLM consensus (right) causal graphs. Gray arrows = shared edges; blue dashed arrows = expert-only socioeconomic pathways; red arrow = LLM-only inverted key edge; greyed nodes = variables excluded by LLMs. The key structural disagreement: experts place <b>TB→LS</b>; LLMs place <b>LS→TB</b>.</i>
+  <i>Fig. 2. Expert-constructed (left) vs. LLM consensus (right) causal graphs. Dark blue nodes = socioeconomic factors; red arrow = LLM-only inverted key edge. The key structural disagreement: experts place TB→LS; LLMs place LS→TB.</i>
 </div>
 <br/>
 
