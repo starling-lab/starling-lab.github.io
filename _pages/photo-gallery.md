@@ -4,6 +4,18 @@ permalink: /gallery/
 title: "Photo gallery"
 author_profile: false
 gallery:
+  - url: /assets/images/gallery/athresh_hooding.jpg
+    image_path: assets/images/gallery/athresh_hooding.jpg
+    alt: "Dr. Mathur's hooding!"
+    title: "Saurabh's hooding ceremony"
+  - url: /assets/images/gallery/athresh_dissertation_2.jpg
+    image_path: assets/images/gallery/athresh_defense_2.jpg
+    alt: "Athresh defending his PhD thesis on Effective, Efficient, and Explainable Learning in Data-Scarce and Noisy Domains"
+    title: "Congratulations to Dr. Karanam on successfully defending his thesis!"
+  - url: /assets/images/gallery/athresh_dissertation.jpg
+    image_path: assets/images/gallery/athresh_defense.jpg
+    alt: "Congratulations to Dr. Karanam on successfully defending his thesis!"
+    title: "Congratulations to Dr. Karanam on successfully defending his thesis!"
   - url: /assets/images/gallery/hooding_saurabh.jpg
     image_path: assets/images/gallery/hooding_saurabh.jpg
     alt: "Dr. Mathur's hooding!"
