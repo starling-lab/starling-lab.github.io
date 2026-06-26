@@ -9,11 +9,11 @@ gallery:
     alt: "Dr. Karaman's hooding!"
     title: "Athresh's hooding ceremony"
   - url: /assets/images/gallery/athresh_dissertation_2.jpg
-    image_path: assets/images/gallery/athresh_defense_2.jpg
+    image_path: assets/images/gallery/athresh_dissertation_2.jpg
     alt: "Athresh defending his PhD thesis on Effective, Efficient, and Explainable Learning in Data-Scarce and Noisy Domains"
     title: "Athresh defending his PhD thesis on Effective, Efficient, and Explainable Learning in Data-Scarce and Noisy Domains"
   - url: /assets/images/gallery/athresh_dissertation.jpg
-    image_path: assets/images/gallery/athresh_defense.jpg
+    image_path: assets/images/gallery/athresh_dissertation.jpg
     alt: "Congratulations to Dr. Karanam on successfully defending his thesis!"
     title: "Congratulations to Dr. Karanam on successfully defending his thesis!"
   - url: /assets/images/gallery/hooding_saurabh.jpg
