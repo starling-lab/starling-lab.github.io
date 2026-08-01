@@ -4,6 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']]},
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js"
+      ]
+    }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><rect width="300" height="200" fill="#171C2B"/><text x="150" y="115" font-family="Georgia,serif" font-size="72" fill="#F4F1E8" text-anchor="middle">S</text></svg></template>
@@ -26,13 +47,42 @@
     <h1 style="font-family:'Newsreader',serif;font-size:36px;font-weight:500;margin:22px 0 10px;">A Unified Framework for Human-Allied Learning of Probabilistic Circuits</h1>
     <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Athresh Karanam, Saurabh Mathur, Sahil Sidheekh, Sriraam Natarajan &middot; AAAI 2025</p>
     <div style="border-radius:14px;overflow:hidden;margin-bottom:32px;"><img src="assets/project/hapc.jpg" alt="Human-Allied Probabilistic Circuits" style="width:100%;display:block;" /></div>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Probabilistic circuits make inference tractable, but building them from small, real-world datasets like healthcare records requires more than data alone &mdash; it requires domain knowledge. This work proposes a unified framework for encoding diverse forms of that knowledge as soft, differentiable constraints during circuit learning.</p>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">The framework accommodates monotonicity and independence between variables, generalization constraints like symmetry, and predictive constraints like class-imbalance trade-offs &mdash; anything whose violation can be expressed as a differentiable penalty added to the log-likelihood objective. Evaluated on synthetic Bayesian-network data, UCI benchmarks, MNIST, and a real clinical domain (adverse pregnancy outcomes), it shows that combining data with multiple forms of expert knowledge consistently outperforms models restricted to a single form of knowledge or none at all.</p>
+    <p style="font-size:13px;color:#8A8477;margin:0 0 20px;"><strong>Accepted</strong> at the 39th Annual AAAI Conference on Artificial Intelligence (AAAI) 2025. In this work: (1) we propose a unified framework for representing domain knowledge as probabilistic constraints that subsumes existing methods, with six particular instantiations; (2) we propose an augmented objective function for exploiting multiple forms of domain knowledge when learning tractable probabilistic models, optimizable via generic parameter-learning algorithms; (3) we experimentally validate the added utility of our approach on several benchmark and real-world scenarios where data is limited but knowledge is abundant.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Probabilistic Generative Models</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Probabilistic generative models like Bayesian networks are a powerful framework for representing and reasoning about relationships between variables &mdash; well-suited to complex domains like healthcare, where understanding those relationships is crucial for clinical decision-making. But reasoning with them requires probabilistic inference, which is intractable in general.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/human-allied-pcs/background_fig.png" alt="Bayesian network, probabilistic circuit, and domain knowledge" style="max-width:720px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:10px 0 0;">A Bayesian network (left) over three variables &mdash; Age, Education level, and risk of preterm birth &mdash; a Probabilistic Circuit (middle) over the same domain, and domain knowledge (right) in the form of context-specific independence.</p></div>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Tractable Probabilistic Modeling via Probabilistic Circuits</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Probabilistic circuits have emerged as an effective solution to the tractable-inference problem, representing the joint distribution as a computational graph &mdash; exploiting the power of deep learning while maintaining probabilistic semantics. But constructing them is challenging: complex real-world domains like healthcare often suffer from data scarcity, so effective learning requires combining small datasets with diverse forms of domain knowledge.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">A Unified Framework for Human-Allied Learning of PCs</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">To construct tractable probabilistic generative models from small datasets by exploiting multiple forms of domain knowledge, we propose a unified framework for human-allied learning of probabilistic circuits. It accommodates any form of domain knowledge whose violation can be measured by a differentiable function &mdash; high-level relationships like monotonicity and independence, generalization constraints like symmetry and exchangeability, and predictive constraints like class-imbalance trade-offs.</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Our approach treats domain knowledge as soft constraints, encoded as a violation term used for regularization &mdash; frustratingly simple. This gives an optimization problem of the form:</p>
+    <div style="text-align:center;font-size:16px;margin:20px 0;">$$\underset{\theta}{\arg\max}\ \underbrace{\mathcal{L}(\langle \mathcal{G}, \theta \rangle, \mathcal{D})}_{\text{log-likelihood of data under PC}} - \lambda\underbrace{\zeta(\langle \mathcal{G}, \theta \rangle, \mathcal{K})}_{\text{knowledge-based penalty}}$$</div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">To enforce domain knowledge as hard constraints instead, we propose an iterative procedure that gradually increases the weight of the knowledge-based penalty.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Empirical Evaluation</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We evaluated our approach across synthetic tabular data sampled from Bayesian networks, medical datasets from the UCI Machine Learning repository, MNIST images, complex manifolds, and a real clinical domain focused on adverse pregnancy outcomes (numom2b). Our experiments demonstrate the efficacy of integrating patterns learned from data with multiple forms of domain knowledge.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/human-allied-pcs/results_1.png" alt="Generative performance results" style="max-width:450px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:10px 0 0;max-width:500px;margin-left:auto;margin-right:auto;">Generative performance of PCs learned from data and multiple forms of domain knowledge, quantified via average test-set log-likelihood. PCs exploiting multiple forms of knowledge (context-specific independence and monotonicity) outperform those restricted to one form (context-specific independence) and purely data-driven ones.</p></div>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/human-allied-pcs/results_2.png" alt="Samples from PCs trained on point-cloud MNIST" style="max-width:450px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:10px 0 0;max-width:500px;margin-left:auto;margin-right:auto;">Images sampled from PCs learned on a point-cloud version of MNIST digits, which exhibits permutation invariance &mdash; a symmetry difficult to model even for advanced generative models like GANs and VAEs. Left: sampled from a PC learned purely from data. Right: sampled from a PC learned by exploiting domain knowledge about the point cloud's symmetries.</p></div>
+
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;">
       <a href="https://arxiv.org/abs/2405.02413" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
       <a href="https://github.com/athresh/unified-constraints-pc" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Code</a>
       <a href="assets/pdfs/AAAI25_HAPC_Poster.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Poster</a>
     </div>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Citation</h2>
+    <pre style="background:#F1EDE3;border-radius:8px;padding:16px;font-size:12.5px;overflow-x:auto;line-height:1.5;">@inproceedings{karanam2024unified,
+    title = {A Unified Framework for Human-Allied Learning of Probabilistic Circuits},
+    author = {Karanam, Athresh and Mathur, Saurabh and Sidheekh, Sahil and Natarajan, Sriraam},
+    booktitle = {The 39th Annual AAAI Conference on Artificial Intelligence (AAAI)},
+    year = {2025}
+}</pre>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Acknowledgements</h2>
+    <p style="font-size:13px;line-height:1.7;color:#8A8477;margin:0 0 20px;">The authors gratefully acknowledge the generous support of NIH grant R01HD101246, AFOSR award FA9550-23-1-0239, ARO award W911NF2010224, and the DARPA Assured Neuro Symbolic Learning and Reasoning (ANSR) award HR001122S0039.</p>
   </section>
   <footer style="background:#211F1C;color:#C9C2B2;"><div style="max-width:1180px;margin:0 auto;padding:40px 32px;text-align:center;"><p style="font-size:13px;margin:0;">&copy; 2026 StARLinG Lab &middot; The University of Texas at Dallas</p></div></footer>
 </div>

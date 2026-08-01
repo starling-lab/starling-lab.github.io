@@ -4,6 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']]},
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js"
+      ]
+    }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><rect width="300" height="200" fill="#171C2B"/><text x="150" y="115" font-family="Georgia,serif" font-size="72" fill="#F4F1E8" text-anchor="middle">S</text></svg></template>
@@ -26,14 +47,42 @@
     <h1 style="font-family:'Newsreader',serif;font-size:36px;font-weight:500;margin:22px 0 10px;">RePReL</h1>
     <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Harsha Kokel, Arjun Manoharan, Sriraam Natarajan, Balaraman Ravindran, Prasad Tadepalli &middot; ICAPS 2021</p>
     <div style="border-radius:14px;overflow:hidden;margin-bottom:32px;"><img src="assets/project/RePReL-example.png" alt="RePReL" style="width:100%;display:block;" /></div>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">State abstraction is critical for transferring skills across complex RL tasks. RePReL is a hierarchical framework that uses a relational planner to construct useful, task-specific state abstractions for a lower-level RL agent &mdash; inspired by MAXQ and hybrid planner-RL architectures, but built for relational domains where the number and type of objects isn't fixed in advance.</p>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We introduce Dynamic-FOCI statements, extending first-order conditional influence statements to justify the safety of these abstractions. In a toy multi-passenger taxi domain, an RL policy handling one passenger's pickup only needs to know that passenger's location and whether the taxi is free &mdash; ignoring everything else. Experiments confirm RePReL improves sample efficiency, transfer, and generalization to varying numbers of objects.</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">State abstraction is necessary for better task transfer in complex reinforcement learning environments. Inspired by the benefit of state abstraction in MAXQ and building on hybrid planner-RL architectures, we propose RePReL, a hierarchical framework that leverages a relational planner to provide useful state abstractions.</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">The benefit of state abstraction is especially critical in relational settings, where the number and/or types of objects aren't fixed a priori. We propose Dynamic-FOCI statements, adapting first-order conditional influence (FOCI) statements to specify the bisimilarity conditions of the MDP, which lets us justify the safety of the abstractions. Because the RL agent learns to optimize subgoal-achieving policies with abstract state representations, learned skills transfer effectively from one task to another &mdash; our experiments show RePReL achieves better performance and more efficient learning on the task at hand, and better generalization to unseen tasks.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Motivational Example</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">In many real-world domains &mdash; driving, for instance &mdash; the state space of offline planning differs sharply from that of online execution. Planning happens at the level of deciding a route; execution must react to dynamic conditions like other cars and traffic lights that the agent doesn't have access to (or the compute to plan around) in advance. We motivate this with an extended taxi domain: transporting multiple passengers to their respective destinations.</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">High-level planning here doesn't see the exact map &mdash; it just plans pickup/drop subgoals &mdash; while the lower-level RL agent learns to navigate the grid and accomplish them. Task-specific abstraction boosts sample efficiency enormously: an RL policy performing passenger $p1$'s pickup needs only $p1$'s location and whether the taxi is free; passenger $p2$ and $p1$'s destination are irrelevant.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/RePReL-example.png" alt="Taxi domain abstraction example" style="max-width:300px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:10px 0 0;max-width:400px;margin-left:auto;margin-right:auto;">Abstract representations for the Taxi domain with multiple passengers; the high-level planner doesn't see the whole map, and the lower-level RL agent doesn't see other passengers' locations.</p></div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">For human-level general intelligence, it's been argued that detecting compositional structure and forming task-specific abstractions are necessary. RePReL takes a step in that direction with the D-FOCI formulation, letting a domain expert specify the task-specific abstract representation.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">D-FOCI</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Since states are conjunctions of literals in Relational MDPs, we need to reason about how actions influence state predicates and how rewards are influenced by goal predicates and actions, to decide which literals belong in the abstraction. We capture this using First-Order Conditional Influence (FOCI) statements: "if condition then $X_1$ influences $X_2$," where condition and $X_1$ are first-order literals and $X_2$ is a single literal.</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We extend FOCI to Dynamic FOCI (D-FOCI), which also describes how literals at the current time step directly influence literals at the next time step (marked with a $+1$ on the arrow):</p>
+    <div style="text-align:center;font-size:16px;margin:20px 0;">$$\text{operator}:\left\{\mathrm{p}(X_1), q(X_1)\right\} \stackrel{+1}{\longrightarrow} \mathrm{q}(X_1)$$</div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">This says $q(X_1)$ at the next time step is directly influenced only by $\{p(X_1), q(X_1)\}$ for the given operator. D-FOCI statements are essentially relational versions of dynamic Bayesian networks, capturing conditional independence between domain predicates across time steps &mdash; so Q-learning with these abstractions yields an optimal policy whenever the MDP satisfies the D-FOCI statements under fixed-depth unrolling.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Experiments</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Our evaluation answers three questions, all positively: (1) <b>Sample efficiency</b> &mdash; do RePReL's abstractions improve it? (2) <b>Transfer</b> &mdash; do abstractions allow effective transfer across tasks? (3) <b>Generalization</b> &mdash; does RePReL generalize efficiently to varying numbers of objects? See our ICAPS 2021 paper for optimality guarantees, the learning algorithm, and full results. A sample implementation is on our lab's GitHub.</p>
+
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;">
       <a href="assets/pdfs/Kokel_ICAPS2021.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
       <a href="assets/pdfs/Kokel_ICAPS21_sup.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Appendix</a>
       <a href="https://github.com/starling-lab/RePReL" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Code</a>
       <a href="https://youtu.be/xNTdksqUQCM" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Video</a>
     </div>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Citation</h2>
+    <pre style="background:#F1EDE3;border-radius:8px;padding:16px;font-size:12.5px;overflow-x:auto;line-height:1.5;">@inproceedings{KokelMNBT21,
+  title={RePReL: Integrating Relational Planning and Reinforcement Learning for Effective Abstraction},
+  author={Kokel, Harsha and Manoharan, Arjun and Natarajan, Sriraam and Balaraman, Ravindran and Tadepalli, Prasad},
+  booktitle={Thirty First International Conference on Automated Planning and Scheduling ({ICAPS})},
+  year={2021},
+  url={https://ojs.aaai.org/index.php/ICAPS/article/view/16001}
+}</pre>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Acknowledgements</h2>
+    <p style="font-size:13px;line-height:1.7;color:#8A8477;margin:0 0 20px;">HK &amp; SN gratefully acknowledge the support of ARO award W911NF2010224. SN acknowledges AFOSR award FA9550-18-1-0462. PT acknowledges support of DARPA contract N66001-17-2-4030 and NSF grant IIS-1619433. AM gratefully acknowledges the travel grant from RBCDSAI. Any opinions, findings, conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of ARO, AFOSR, NSF, DARPA, or the US government.</p>
   </section>
   <footer style="background:#211F1C;color:#C9C2B2;"><div style="max-width:1180px;margin:0 auto;padding:40px 32px;text-align:center;"><p style="font-size:13px;margin:0;">&copy; 2026 StARLinG Lab &middot; The University of Texas at Dallas</p></div></footer>
 </div>

@@ -4,6 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']]},
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js"
+      ]
+    }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><rect width="300" height="200" fill="#171C2B"/><text x="150" y="115" font-family="Georgia,serif" font-size="72" fill="#F4F1E8" text-anchor="middle">S</text></svg></template>
@@ -26,8 +47,20 @@
     <h1 style="font-family:'Newsreader',serif;font-size:38px;font-weight:500;margin:22px 0 10px;">Knowledge-intensive Gradient Boosting</h1>
     <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Harsha Kokel, Phillip Odom, Shuo Yang, Sriraam Natarajan &middot; AAAI 2020</p>
     <div style="border-radius:14px;overflow:hidden;margin-bottom:32px;"><img src="assets/project/kigb.png" alt="KiGB" style="width:100%;display:block;" /></div>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Tree-based gradient boosting is powerful, but it struggles wherever data is sparse or noisy. KiGB (Knowledge-intensive Gradient Boosting) shows how to fold qualitative domain knowledge into boosted-tree learning to shore up exactly those regions.</p>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Given a sparse or noisy dataset and some qualitative trend, expressed as a monotonic influence between a feature and the target, KiGB constrains each tree split so the expected outcome of the left and right subtrees respects that trend. Violations are penalized in the boosting objective directly, giving a clean trade-off &mdash; tuned via two hyperparameters &mdash; between what the data says and what the expert knows.</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Tree-based gradient boosting is powerful, but it fails in regions where data is absent or mostly noisy. In real-world problems, data is often sparse and noisy &mdash; can we leverage qualitative domain knowledge for exactly those regions? Our Knowledge-intensive Gradient Boosting approach provides a way to do that.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/kigb/Picture1.png" alt="KiGB motivation" style="max-height:350px;width:auto;max-width:100%;border-radius:8px;" /></div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Given a sparse/noisy dataset and some qualitative knowledge of the domain, KiGB learns boosted trees. That knowledge is expressed as monotonic influences: for a dataset where monotonic influence $a_{<}^{Q+}y$ holds, higher values of variable $a$ stochastically result in higher values of target $y$.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:24px 0;">
+      <div style="text-align:center;"><img src="assets/project/kigb/data.png" alt="Dataset with monotonic trend" style="max-width:300px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:8px 0 0;max-width:300px;">Dataset with X-Y axes representing features $a$ and $b$; color/shape represents target $y$.</p></div>
+      <div style="text-align:center;"><img src="assets/project/kigb/QC.png" alt="Monotonic influence quantification" style="max-width:200px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:8px 0 0;max-width:200px;">Monotonic influence of feature $a$ on target $y$.</p></div>
+    </div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">In ordinal-restricted statistics, monotonic influence implies the constraint $a_1 < a_2 \implies \psi(a_1) \leq \psi(a_2)$. Following Altendorf et al. (UAI 2005) and Yang &amp; Natarajan (ECML-PKDD 2013), this becomes a constraint on the probability distribution: $a_1 < a_2 \implies P(Y\leq k \vert \boldsymbol{pa_y^{a_1}}) \geq P(Y\leq k \vert \boldsymbol{pa_y^{a_2}})$.</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We use an analogous constraint at each tree split: when a node splits on a variable with a monotonicity constraint, the expectation of the left subtree should be less than that of the right (assuming a $\leq$ split criterion), with some slack $\varepsilon$ for overlap.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/kigb/tree.png" alt="Tree split constraint" style="max-width:350px;width:100%;border-radius:8px;" /></div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">This gives a constraint $\zeta$ that's violated whenever $\zeta > 0$. We add a loss term penalizing that violation to the boosting objective, weighted by $\lambda$, and take its gradient to get a leaf-update rule with two components: the usual data-fit mean, plus a penalty term for advice violation. The penalty is proportional to the violation and inversely proportional to the number of data points at that node &mdash; a natural trade-off between advice and data, tunable via $\varepsilon$ and $\lambda$.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/kigb/Algo.png" alt="KiGB algorithm" style="max-width:550px;width:100%;border-radius:8px;" /></div>
+    <p style="font-size:13px;color:#8A8477;margin:0 0 20px;">For empirical evaluations, background on other monotonicity-based approaches, and the full gradient derivation, see our AAAI 2020 <a href="assets/pdfs/Kokel_AAAI20.pdf" target="_blank" rel="noopener">paper</a>. Code and usage guide: <a href="https://github.com/harshakokel/KiGB" target="_blank" rel="noopener">github.com/harshakokel/KiGB</a>.</p>
+
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;">
       <a href="assets/pdfs/Kokel_AAAI20.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
       <a href="https://github.com/harshakokel/KiGB" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Code</a>
@@ -35,10 +68,15 @@
       <a href="https://harshakokel.com/pdf/KokelAAAI2020poster.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Poster</a>
     </div>
     <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Citation</h2>
-    <pre style="background:#211F1C;color:#E7E2D8;padding:18px 20px;border-radius:10px;font-family:monospace;font-size:12.5px;line-height:1.6;overflow-x:auto;">@inproceedings{kokelaaai20,
+    <pre style="background:#F1EDE3;border-radius:8px;padding:16px;font-size:12.5px;overflow-x:auto;line-height:1.5;">@inproceedings{kokelaaai20,
   author = {Harsha Kokel and Phillip Odom and Shuo Yang and Sriraam Natarajan},
-  title  = {A Unified Framework for Knowledge Intensive Gradient Boosting},
-  booktitle = {AAAI}, year = {2020} }</pre>
+  title  = {A Unified Framework for Knowledge Intensive Gradient Boosting: Leveraging Human Experts for Noisy Sparse Domains},
+  booktitle = {AAAI},
+  year   = {2020}
+}</pre>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Acknowledgements</h2>
+    <p style="font-size:13px;line-height:1.7;color:#8A8477;margin:0 0 20px;">Harsha Kokel and Sriraam Natarajan acknowledge the support of Turvo Inc. and CwC Program Contract W911NF-15-1-0461 with the US Defense Advanced Research Projects Agency (DARPA) and the Army Research Office (ARO).</p>
   </section>
   <footer style="background:#211F1C;color:#C9C2B2;"><div style="max-width:1180px;margin:0 auto;padding:40px 32px;text-align:center;"><p style="font-size:13px;margin:0;">&copy; 2026 StARLinG Lab &middot; The University of Texas at Dallas</p></div></footer>
 </div>

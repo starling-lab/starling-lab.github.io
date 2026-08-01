@@ -26,13 +26,38 @@
     <h1 style="font-family:'Newsreader',serif;font-size:36px;font-weight:500;margin:22px 0 10px;">MaRePReL</h1>
     <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Nikhilesh Prabhakar, Ranveer Singh, Harsha Kokel, Sriraam Natarajan, Prasad Tadepalli &middot; AAMAS 2025</p>
     <div style="border-radius:14px;overflow:hidden;margin-bottom:32px;"><img src="assets/project/mareprel.png" alt="MaRePReL" style="width:100%;display:block;" /></div>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Multiagent RL is already hard &mdash; exponential state-action spaces, environment non-stationarity, credit assignment &mdash; and relational domains, where policies must generalize across a growing number of objects and tasks, make it harder still. Traditional MARL approaches don't scale to this combination.</p>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">MaRePReL extends our RePReL framework to multiagent settings by using a relational hierarchical planner as a centralized controller: it decomposes tasks into structured sub-tasks and hands each agent a well-defined, non-overlapping piece of work, taming non-stationarity. Domain knowledge in the form of Dynamic First-Order Conditional Influence statements then extracts only the state features each agent's sub-task actually needs, and per-agent RL policies learn to act within that reduced space.</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Multiagent Reinforcement Learning (MARL) introduces several challenges to sequential decision-making: the curse of dimensionality from exponential state and action spaces, non-stationarity of the environment, and credit assignment. Add the complexity of relational domains &mdash; where policies must generalize to an increasing number of objects and tasks &mdash; and traditional MARL approaches can't learn or scale efficiently. Our work introduces <b>MaRePReL</b> (Multiagent Relational Planning and Reinforcement Learning), a framework that addresses these challenges by integrating hierarchical relational planning with reinforcement learning, extending our original <a href="Project-RePReL.html">RePReL</a> framework to handle domains with multiple agents.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">MaRePReL</h2>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/mareprel-figs/MaRePReL.png" alt="MaRePReL architecture" style="max-width:300px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:10px 0 0;">MaRePReL Architecture</p></div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">MaRePReL addresses the key issues in MARL as follows:</p>
+    <ol style="font-size:15.5px;line-height:1.8;color:#3A362F;margin:0 0 20px;padding-left:22px;">
+      <li><b>Relational planner as a centralized controller.</b> Rather than treating the problem space as a monolithic entity, MaRePReL uses a relational hierarchical planner to decompose tasks into structured sub-tasks, managing exponential state-action complexity by breaking the problem into smaller, manageable units.</li>
+      <li><b>Handling non-stationarity through task distribution.</b> The planner acts as a centralized controller, ensuring agents receive well-defined, non-overlapping tasks &mdash; structuring interactions to reduce the chaos of multiagent interaction and mitigate non-stationarity for more stable learning.</li>
+      <li><b>Improving sample efficiency with abstraction reasoning.</b> Building on RePReL, MaRePReL incorporates domain knowledge as Dynamic First-Order Conditional Influence (D-FOCI) statements to extract only the state features relevant to each agent's sub-task, reducing the samples needed for training.</li>
+      <li><b>Enhancing generalization via task-specific lower-level policies.</b> Once abstracted, multiple lower-level reinforcement learning policies learn to act in different tasks within the abstract state space, for different agents.</li>
+    </ol>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Related Work</h2>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/mareprel-figs/related_work_mareprel.png" alt="MaRePReL relative to existing literature" style="max-width:300px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:10px 0 0;">MaRePReL with respect to existing literature on relational, hierarchical, and multiagent RL.</p></div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">An ideal RL framework must handle both the rich relational structure of a domain and the decomposition of complex tasks into smaller ones &mdash; representing and reasoning with hierarchies and relational structures together. RePReL successfully handles relations and hierarchies in continuous spaces via a hierarchical relational planner and Deep RL, but can't handle multiagent systems. Given the three-pronged challenge of complex task structures, rich object-centric environments, and multiagent domains, prior work has advanced each direction separately &mdash; hierarchical RL (HRL), relational RL (RRL), and multiagent RL (MARL) &mdash; and more recently in pairwise combinations, but no significant work has encompassed all three challenges together.</p>
+
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;">
       <a href="assets/pdfs/MARePReL_AAMAS25.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
       <a href="assets/pdfs/MaRePReL_AAMAS25_sup.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Appendix</a>
       <a href="https://github.com/s-ranveer/MaRePReL" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Code</a>
     </div>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Citation</h2>
+    <pre style="background:#F1EDE3;border-radius:8px;padding:16px;font-size:12.5px;overflow-x:auto;line-height:1.5;">@inproceedings{PrabhakarAAMAS25,
+  title={Combining Planning and Reinforcement Learning for Solving Relational Multiagent Domains},
+  author={Nikhilesh Prabhakar and Ranveer Singh and Harsha Kokel and Sriraam Natarajan and Prasad Tadepalli},
+  booktitle={The 24th International Conference on Autonomous Agents and Multi-Agent Systems (AAMAS)},
+  year={2022}
+}</pre>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Acknowledgements</h2>
+    <p style="font-size:13px;line-height:1.7;color:#8A8477;margin:0 0 20px;">NP, RS, and SN gratefully acknowledge the support of ARO award W911NF2010224. PT gratefully acknowledges the support of ARO award W911NF2210251. The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily representing the official policies or endorsements, either expressed or implied, of ARO or the U.S. government.</p>
   </section>
   <footer style="background:#211F1C;color:#C9C2B2;"><div style="max-width:1180px;margin:0 auto;padding:40px 32px;text-align:center;"><p style="font-size:13px;margin:0;">&copy; 2026 StARLinG Lab &middot; The University of Texas at Dallas</p></div></footer>
 </div>
