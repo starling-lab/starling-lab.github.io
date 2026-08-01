@@ -47,6 +47,11 @@
     <h1 style="font-family:'Newsreader',serif;font-size:36px;font-weight:500;margin:22px 0 10px;">A Unified Framework for Human-Allied Learning of Probabilistic Circuits</h1>
     <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Athresh Karanam, Saurabh Mathur, Sahil Sidheekh, Sriraam Natarajan &middot; AAAI 2025</p>
     <div style="border-radius:14px;overflow:hidden;margin-bottom:32px;"><img src="assets/project/hapc.jpg" alt="Human-Allied Probabilistic Circuits" style="width:100%;display:block;" /></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:0 0 28px;">
+      <a href="https://arxiv.org/abs/2405.02413" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
+      <a href="https://github.com/athresh/unified-constraints-pc" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Code</a>
+      <a href="assets/pdfs/AAAI25_HAPC_Poster.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Poster</a>
+    </div>
     <p style="font-size:13px;color:#8A8477;margin:0 0 20px;"><strong>Accepted</strong> at the 39th Annual AAAI Conference on Artificial Intelligence (AAAI) 2025. In this work: (1) we propose a unified framework for representing domain knowledge as probabilistic constraints that subsumes existing methods, with six particular instantiations; (2) we propose an augmented objective function for exploiting multiple forms of domain knowledge when learning tractable probabilistic models, optimizable via generic parameter-learning algorithms; (3) we experimentally validate the added utility of our approach on several benchmark and real-world scenarios where data is limited but knowledge is abundant.</p>
 
     <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Probabilistic Generative Models</h2>
@@ -66,12 +71,6 @@
     <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We evaluated our approach across synthetic tabular data sampled from Bayesian networks, medical datasets from the UCI Machine Learning repository, MNIST images, complex manifolds, and a real clinical domain focused on adverse pregnancy outcomes (numom2b). Our experiments demonstrate the efficacy of integrating patterns learned from data with multiple forms of domain knowledge.</p>
     <div style="text-align:center;margin:24px 0;"><img src="assets/project/human-allied-pcs/results_1.png" alt="Generative performance results" style="max-width:450px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:10px 0 0;max-width:500px;margin-left:auto;margin-right:auto;">Generative performance of PCs learned from data and multiple forms of domain knowledge, quantified via average test-set log-likelihood. PCs exploiting multiple forms of knowledge (context-specific independence and monotonicity) outperform those restricted to one form (context-specific independence) and purely data-driven ones.</p></div>
     <div style="text-align:center;margin:24px 0;"><img src="assets/project/human-allied-pcs/results_2.png" alt="Samples from PCs trained on point-cloud MNIST" style="max-width:450px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:10px 0 0;max-width:500px;margin-left:auto;margin-right:auto;">Images sampled from PCs learned on a point-cloud version of MNIST digits, which exhibits permutation invariance &mdash; a symmetry difficult to model even for advanced generative models like GANs and VAEs. Left: sampled from a PC learned purely from data. Right: sampled from a PC learned by exploiting domain knowledge about the point cloud's symmetries.</p></div>
-
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;">
-      <a href="https://arxiv.org/abs/2405.02413" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
-      <a href="https://github.com/athresh/unified-constraints-pc" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Code</a>
-      <a href="assets/pdfs/AAAI25_HAPC_Poster.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Poster</a>
-    </div>
 
     <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Citation</h2>
     <pre style="background:#F1EDE3;border-radius:8px;padding:16px;font-size:12.5px;overflow-x:auto;line-height:1.5;">@inproceedings{karanam2024unified,

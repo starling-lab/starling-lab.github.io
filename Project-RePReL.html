@@ -47,6 +47,12 @@
     <h1 style="font-family:'Newsreader',serif;font-size:36px;font-weight:500;margin:22px 0 10px;">RePReL</h1>
     <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Harsha Kokel, Arjun Manoharan, Sriraam Natarajan, Balaraman Ravindran, Prasad Tadepalli &middot; ICAPS 2021</p>
     <div style="border-radius:14px;overflow:hidden;margin-bottom:32px;"><img src="assets/project/RePReL-example.png" alt="RePReL" style="width:100%;display:block;" /></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:0 0 28px;">
+      <a href="assets/pdfs/Kokel_ICAPS2021.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
+      <a href="assets/pdfs/Kokel_ICAPS21_sup.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Appendix</a>
+      <a href="https://github.com/starling-lab/RePReL" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Code</a>
+      <a href="https://youtu.be/xNTdksqUQCM" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Video</a>
+    </div>
     <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">State abstraction is necessary for better task transfer in complex reinforcement learning environments. Inspired by the benefit of state abstraction in MAXQ and building on hybrid planner-RL architectures, we propose RePReL, a hierarchical framework that leverages a relational planner to provide useful state abstractions.</p>
     <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">The benefit of state abstraction is especially critical in relational settings, where the number and/or types of objects aren't fixed a priori. We propose Dynamic-FOCI statements, adapting first-order conditional influence (FOCI) statements to specify the bisimilarity conditions of the MDP, which lets us justify the safety of the abstractions. Because the RL agent learns to optimize subgoal-achieving policies with abstract state representations, learned skills transfer effectively from one task to another &mdash; our experiments show RePReL achieves better performance and more efficient learning on the task at hand, and better generalization to unseen tasks.</p>
 
@@ -64,13 +70,6 @@
 
     <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Experiments</h2>
     <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Our evaluation answers three questions, all positively: (1) <b>Sample efficiency</b> &mdash; do RePReL's abstractions improve it? (2) <b>Transfer</b> &mdash; do abstractions allow effective transfer across tasks? (3) <b>Generalization</b> &mdash; does RePReL generalize efficiently to varying numbers of objects? See our ICAPS 2021 paper for optimality guarantees, the learning algorithm, and full results. A sample implementation is on our lab's GitHub.</p>
-
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;">
-      <a href="assets/pdfs/Kokel_ICAPS2021.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
-      <a href="assets/pdfs/Kokel_ICAPS21_sup.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Appendix</a>
-      <a href="https://github.com/starling-lab/RePReL" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Code</a>
-      <a href="https://youtu.be/xNTdksqUQCM" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Video</a>
-    </div>
 
     <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Citation</h2>
     <pre style="background:#F1EDE3;border-radius:8px;padding:16px;font-size:12.5px;overflow-x:auto;line-height:1.5;">@inproceedings{KokelMNBT21,
