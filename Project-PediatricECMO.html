@@ -24,14 +24,128 @@
   <section style="max-width:860px;margin:0 auto;padding:56px 32px 80px;">
     <a href="Projects.html#precision-health" style="font-size:13px;font-weight:600;">&larr; Precision Health</a>
     <h1 style="font-family:'Newsreader',serif;font-size:34px;font-weight:500;margin:22px 0 10px;">Imitation Learning for Clinical Decision Support in Pediatric ECMO</h1>
-    <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Fateme Golivand Darvishvand, Michael Skinner, Sriraam Natarajan, and collaborators &middot; AIME 2026</p>
+    <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Fateme Golivand Darvishvand, Michael Skinner, Saurabh Mathur, Ameet Soni, Phillip Reeder, Kristian Kersting, Lakshmi Raman, Sriraam Natarajan &middot; AIME 2026</p>
     <div style="border-radius:14px;overflow:hidden;margin-bottom:32px;"><img src="assets/project/ecmo.png" alt="Pediatric ECMO" style="width:100%;display:block;" /></div>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Pediatric critical care on ECMO is a dynamic, high-stakes process of constant monitoring and adjustment, and experimenting on critically ill children is neither ethical nor practical. We frame clinical decision-making as imitation learning from observational data instead, where the clinician's actions must be inferred rather than directly observed.</p>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Across 78 pediatric ECMO trajectories from Children's Medical Center Dallas, we found a TabPFN-based approach consistently outperforms classical gradient-based baselines on generalization and calibration, and is more resilient to the severe class imbalance inherent to this setting &mdash; supporting its use as a strong clinician-behavior baseline for pediatric ECMO decision support.</p>
+
+    <p style="font-size:15px;line-height:1.7;color:#57534A;font-style:italic;border-left:3px solid #D8D2C4;padding-left:16px;margin:0 0 24px;">Pediatric critical care is a dynamic, high-stakes process involving constant monitoring and adjustments in life-saving treatments. We frame clinical decision-making as imitation learning from observational data, in which actions are not directly observed. We find that the TabPFN-based approach consistently outperforms classical baselines, supporting its use as a strong clinician-behavior baseline for pediatric ECMO decision support.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Key Challenges in Pediatric ECMO</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Building decision support for this domain is complicated by the incomplete, difficult-to-formalize nature of pediatric-specific protocols, plus the ethical and practical impossibility of experimentation on critically ill children.</p>
+    <ol style="font-size:15.5px;line-height:1.8;color:#3A362F;margin:0 0 20px;padding-left:22px;">
+      <li><b>Irregular time between actions.</b> Clinical observations arrive at irregular intervals; we aggregate trajectories into hourly windows.</li>
+      <li><b>Concurrent, high-dimensional action space.</b> Several parameters can be changed simultaneously, without explicit annotations.</li>
+      <li><b>No explicit intervention labels.</b> Interventions aren't timestamped in the raw dataset; we infer each action from its delta over a 1-hour window.</li>
+      <li><b>Severe data scarcity.</b> Many observations for few patients &mdash; an imbalance of features vs. examples.</li>
+      <li><b>No explicit reward signal.</b> Trajectory success must be inferred from patient outcome; evaluating new strategies on live patients is unfeasible.</li>
+    </ol>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Imitation Learning Pipeline</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Unlike standard reinforcement learning, which requires active environmental interaction, offline imitation learning lets us exploit expert demonstrations already present in historical clinical records.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/ecmo-figs/ecmo_il_pipeline.png" alt="Imitation learning pipeline for ECMO" style="max-width:760px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:10px 0 0;">Fig. 1. Pipeline for learning clinical behavior from unlabeled ECMO trajectories. Raw physiologic telemetry is processed into discrete action labels using physician-defined thresholds, formulating an imitation learning task: predicting clinician "knob" adjustments from patient state.</p></div>
+
+    <h3 style="font-family:'Newsreader',serif;font-size:16px;font-weight:600;margin:24px 0 10px;">Actionable features (knobs)</h3>
+    <p style="font-size:14px;line-height:1.7;color:#57534A;margin:0 0 14px;">A discrete action is identified when the absolute change within a 60-minute window exceeds the specified threshold.</p>
+    <div style="overflow-x:auto;margin:0 0 20px;">
+    <table style="border-collapse:collapse;width:100%;font-size:13.5px;">
+      <thead><tr style="border-bottom:1px solid #D8D2C4;"><th style="text-align:left;padding:8px;">Knob</th><th style="text-align:left;padding:8px;">Threshold</th><th style="text-align:left;padding:8px;">Action space</th></tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Arterial PO&#8322;</td><td style="padding:8px;">25 mmHg</td><td style="padding:8px;">Increase / Same / Decrease</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Arterial PCO&#8322;</td><td style="padding:8px;">5 mmHg</td><td style="padding:8px;">Increase / Same / Decrease</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">SpO&#8322;</td><td style="padding:8px;">5 %</td><td style="padding:8px;">Increase / Same / Decrease</td></tr>
+        <tr><td style="padding:8px;">FiO&#8322;</td><td style="padding:8px;">10 %</td><td style="padding:8px;">Increase / Same / Decrease</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Pediatric ECMO Cohort</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">78 pediatric ECMO trajectories from Children's Medical Center, Dallas. Cases with congenital heart disease were excluded due to the complexity of specialized management.</p>
+    <div style="overflow-x:auto;margin:0 0 20px;">
+    <table style="border-collapse:collapse;width:100%;font-size:13.5px;">
+      <thead><tr style="border-bottom:1px solid #D8D2C4;"><th style="text-align:left;padding:8px;">Metric</th><th style="text-align:left;padding:8px;">Value</th></tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Patient trajectories</td><td style="padding:8px;">78</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Average patient age</td><td style="padding:8px;">4.66 years</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Average trajectory length</td><td style="padding:8px;">215 hours</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">State features per hour</td><td style="padding:8px;">48 (23 clinical variables + deltas + ECMO type + on-ECMO indicator)</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Actionable knobs</td><td style="padding:8px;">4 (PO&#8322;, PCO&#8322;, SpO&#8322;, FiO&#8322;)</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Source</td><td style="padding:8px;">Children's Medical Center, Dallas</td></tr>
+        <tr><td style="padding:8px;">Exclusion criterion</td><td style="padding:8px;">Congenital Heart Disease cases</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 style="font-family:'Newsreader',serif;font-size:16px;font-weight:600;margin:24px 0 10px;">State features</h3>
+    <p style="font-size:14px;line-height:1.7;color:#57534A;margin:0 0 14px;">For each variable, we include the mean value within a 60-minute window and its delta relative to the previous window. Heart rate (HR) and mean arterial pressure (ARTm) are age-normalized.</p>
+    <div style="overflow-x:auto;margin:0 0 20px;">
+    <table style="border-collapse:collapse;width:100%;font-size:13.5px;">
+      <thead><tr style="border-bottom:1px solid #D8D2C4;"><th style="text-align:left;padding:8px;">Category</th><th style="text-align:left;padding:8px;">Features</th></tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Hemodynamics</td><td style="padding:8px;">Mean Arterial Pressure (ARTm), Heart Rate (HR), SpO&#8322;, Cerebral Oximetry (rSO&#8322;-1, rSO&#8322;-2)</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">ECMO Circuit</td><td style="padding:8px;">Blood Flow (mL/kg/min), Sweep Gas CO&#8322; Flow, Sweep Gas O&#8322; Flow, FiO&#8322; &ndash; ECMO, Volume Sensor</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Ventilator</td><td style="padding:8px;">Mean Airway Pressure (PAW), PEEP, Oxygen Concentration (FiO&#8322;), Tidal Volume, End-tidal CO&#8322; (etCO&#8322;)</td></tr>
+        <tr><td style="padding:8px;">Laboratory</td><td style="padding:8px;">Arterial PO&#8322;, PCO&#8322;, pH, Base Excess, Lactate, Ionized Calcium, Total CO&#8322;, INR</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Evaluation Across Three Questions</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We evaluate generalization performance, calibration, and alignment with clinician decisions using leave-one-out (LOO) cross-validation, quantified with balanced accuracy and macro-F1 given the inherent class imbalance.</p>
+
+    <h3 style="font-family:'Newsreader',serif;font-size:16px;font-weight:600;margin:24px 0 10px;">Q1: Do policies generalize?</h3>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">TabPFN achieves the highest mean balanced accuracy across the majority of actions, consistent across all four action knobs (PO&#8322;, PCO&#8322;, SpO&#8322;, FiO&#8322;) &mdash; suggesting it's more resilient to the class imbalance and generalizes more effectively to held-out patients.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/ecmo-figs/ecmo_f1_ranking.png" alt="F1 ranking across action knobs" style="max-width:640px;width:100%;border-radius:8px;" /></div>
+
+    <h3 style="font-family:'Newsreader',serif;font-size:16px;font-weight:600;margin:24px 0 10px;">Q2: Are policies calibrated?</h3>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Expected Calibration Error (ECE) summarizes the average gap between a model's stated confidence and its observed accuracy. TabPFN consistently achieves a lower ECE than the MLP and XGBoost baselines &mdash; its in-context posterior probabilities closely match empirical accuracy, giving reliable confidence estimates.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/ecmo-figs/ecmo_ece.png" alt="Expected calibration error comparison" style="max-width:640px;width:100%;border-radius:8px;" /></div>
+
+    <h3 style="font-family:'Newsreader',serif;font-size:16px;font-weight:600;margin:24px 0 10px;">Q3: Where do policies disagree with clinicians?</h3>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We identify regions of highest model-expert disagreement by training shallow decision trees on residual prediction errors. The table shows the most frequent features in high-disagreement states, as the number of times each was selected across all knobs.</p>
+    <div style="overflow-x:auto;margin:0 0 20px;">
+    <table style="border-collapse:collapse;width:100%;font-size:13.5px;">
+      <thead><tr style="border-bottom:1px solid #D8D2C4;"><th style="text-align:left;padding:8px;">Feature</th><th style="text-align:left;padding:8px;">MLP</th><th style="text-align:left;padding:8px;">TabPFN</th><th style="text-align:left;padding:8px;">XGBoost</th></tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">FiO&#8322;</td><td style="padding:8px;">2</td><td style="padding:8px;">5</td><td style="padding:8px;">5</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">SpO&#8322;</td><td style="padding:8px;">1</td><td style="padding:8px;">5</td><td style="padding:8px;">3</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">pH</td><td style="padding:8px;">2</td><td style="padding:8px;">3</td><td style="padding:8px;">2</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">PO&#8322;</td><td style="padding:8px;">3</td><td style="padding:8px;">2</td><td style="padding:8px;">1</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">PCO&#8322;</td><td style="padding:8px;">2</td><td style="padding:8px;">3</td><td style="padding:8px;">1</td></tr>
+        <tr><td style="padding:8px;">Lactate</td><td style="padding:8px;">3</td><td style="padding:8px;">1</td><td style="padding:8px;">1</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Oxygenation-related signals &mdash; FiO&#8322; and SpO&#8322; &mdash; consistently define where model predictions deviate from clinician actions. Models deviate in different regions of the state space, motivating future expert review of high-disagreement states.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Conclusion</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We presented an imitation learning framework to model clinical decision-making in pediatric ECMO, mapping patient states to concurrent clinical interventions via inferred action labels and a factorized, hierarchical policy architecture. TabPFN consistently outperforms traditional gradient-based baselines, suggesting it can serve as an effective clinician-behavior baseline in challenging critical care settings &mdash; its broad tabular prior, from pretraining on millions of synthetic datasets, enables probabilistic inference in a single forward pass without dataset-specific gradient training or hyperparameter tuning.</p>
+
+    <h3 style="font-family:'Newsreader',serif;font-size:16px;font-weight:600;margin:24px 0 10px;">Future work</h3>
+    <ul style="font-size:15.5px;line-height:1.8;color:#3A362F;margin:0 0 20px;padding-left:22px;">
+      <li>Analyze whether model-clinician disagreements correlate with patient outcomes, such as risk of neurological injury.</li>
+      <li>Explore policy improvement by incorporating expert-defined rewards.</li>
+      <li>Perform systematic analysis of high-disagreement extracted rules and use them to elicit expert feedback for policy refinement.</li>
+    </ul>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Citation</h2>
+    <pre style="background:#F1EDE3;border-radius:8px;padding:16px;font-size:12.5px;overflow-x:auto;line-height:1.5;">@inproceedings{golivand2026ecmo,
+  title     = {Imitation Learning for Clinical Decision Support in Pediatric {ECMO}},
+  author    = {Golivand Darvishvand, Fateme and Skinner, Michael and Mathur, Saurabh
+               and Soni, Ameet and Reeder, Phillip and Kersting, Kristian
+               and Raman, Lakshmi and Natarajan, Sriraam},
+  booktitle = {Proceedings of the 24th International Conference on
+               Artificial Intelligence in Medicine (AIME)},
+  year      = {2026},
+  note      = {Supported by NIH award R01NS133142}
+}</pre>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Acknowledgements</h2>
+    <p style="font-size:13px;line-height:1.7;color:#8A8477;margin:0 0 20px;">We gratefully acknowledge the support of NIH award R01NS133142.</p>
+
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;">
       <a href="assets/pdfs/PediatricECMOShort.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
       <a href="https://arxiv.org/abs/2605.16175v1" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Extended Version</a>
       <a href="https://github.com/fateme-gd/ImitationLearning_ECMO" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Code</a>
+      <a href="https://github.com/fateme-gd/ImitationLearning_ECMO/blob/master/Supplementary.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Supplementary</a>
     </div>
   </section>
   <footer style="background:#211F1C;color:#C9C2B2;"><div style="max-width:1180px;margin:0 auto;padding:40px 32px;text-align:center;"><p style="font-size:13px;margin:0;">&copy; 2026 StARLinG Lab &middot; The University of Texas at Dallas</p></div></footer>

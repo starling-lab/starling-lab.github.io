@@ -24,10 +24,84 @@
   <section style="max-width:860px;margin:0 auto;padding:56px 32px 80px;">
     <a href="Projects.html#precision-health" style="font-size:13px;font-weight:600;">&larr; Precision Health</a>
     <h1 style="font-family:'Newsreader',serif;font-size:34px;font-weight:500;margin:22px 0 10px;">Causal Models with Tiny Data: Rural People Living with Dementia</h1>
-    <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Ranveer Singh, Saurabh Mathur, Sriraam Natarajan, and collaborators &middot; AIME 2026</p>
+    <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Ranveer Singh, Saurabh Mathur, Kavimayil P. Komarasamy, Ameet Soni, Cliff Whetung, Wayne Warry, Kristen Jacklin, Melissa Blind, Sriraam Natarajan &middot; AIME 2026</p>
     <div style="border-radius:14px;overflow:hidden;margin-bottom:32px;"><img src="assets/project/lifespace.png" alt="Causal Models with Tiny Data" style="width:100%;display:block;" /></div>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Life-space mobility &mdash; a person's physical and social environment, movement, and daily activities &mdash; declines with cognitive decline in older adults, but assessments have mostly focused on urban populations, leaving rural and Indigenous communities underserved.</p>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">With only 20 patients from rural and Indigenous communities in Minnesota and Ontario, we compared four ways of building a causal graph: expert elicitation, LLM consensus (Claude, Gemini, GPT), hybrid subtractive refinement, and a data-driven FCI baseline. Experts and LLMs agreed on most edges but inverted one key relationship &mdash; whether caregiver burden or life-space score is the ultimate outcome &mdash; revealing a real difference in what each treats as central to dementia care. None of the graphs fit the data well, but they failed in different, informative ways.</p>
+
+    <p style="font-size:15px;line-height:1.7;color:#57534A;font-style:italic;border-left:3px solid #D8D2C4;padding-left:16px;margin:0 0 24px;">We asked domain experts and three LLMs to construct causal graphs for life-space mobility in rural dementia patients. They agreed on most edges, but disagreed on one that reveals a fundamentally different view of what matters most in dementia care. When tested against real data, none fit well, but they failed in different ways.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Problem: Reasoning About Interventions Without Enough Data</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Life-space mobility captures a person's physical and social environment, movement, and daily activities. A decrease in life-space is associated with declining health in older adults, including cognitive decline. But Life-Space Assessments (LSAs) have mostly focused on urban populations, limiting their applicability to rural or Indigenous settings, where dementia risk is higher.</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Developing interventions for these populations requires causally modeling the relationship between life-space mobility and relevant demographic and environmental variables &mdash; a particularly hard problem, since the data needed for standard causal discovery doesn't exist.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Approach: Four Methods for Causal Graph Construction</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We consider a tiny dataset of 20 patients in rural and Indigenous communities in northern Minnesota, USA, and Ontario, Canada, and compare four approaches for building causal graphs, both structurally and on empirical validity.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/lifespace-figs/lifespace_graph_construction_method.png" alt="Causal graph construction methods" style="max-width:760px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:10px 0 0;">Fig. 1. Causal graph construction methods, including expert elicitation (1), LLM consensus (Claude, Gemini, GPT) (2), hybrid subtractive refinement (3), and a data-driven FCI baseline (4).</p></div>
+
+    <h3 style="font-family:'Newsreader',serif;font-size:16px;font-weight:600;margin:24px 0 10px;">Variables (9 boolean features, n=20)</h3>
+    <p style="font-size:14px;line-height:1.7;color:#57534A;margin:0 0 14px;">Continuous variables were binarized using expert-provided or sample mean-based thresholds.</p>
+    <div style="overflow-x:auto;margin:0 0 20px;">
+    <table style="border-collapse:collapse;width:100%;font-size:13.5px;">
+      <thead><tr style="border-bottom:1px solid #D8D2C4;"><th style="text-align:left;padding:8px;">Code</th><th style="text-align:left;padding:8px;">Variable</th><th style="text-align:left;padding:8px;">Source</th><th style="text-align:left;padding:8px;">Prevalence</th></tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">LS</td><td style="padding:8px;">Life-space score (high)</td><td style="padding:8px;">Life-Space Assessment</td><td style="padding:8px;">45%</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">TB</td><td style="padding:8px;">Total burden on caregiver (high)</td><td style="padding:8px;">Caregiver diary</td><td style="padding:8px;">40%</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">ND</td><td style="padding:8px;">Non-routine days (above median)</td><td style="padding:8px;">Caregiver diary</td><td style="padding:8px;">60%</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">CD</td><td style="padding:8px;">Challenging days (above median)</td><td style="padding:8px;">Caregiver diary</td><td style="padding:8px;">45%</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">CT</td><td style="padding:8px;">Community type (rural)</td><td style="padding:8px;">Demographic</td><td style="padding:8px;">55%</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">PS</td><td style="padding:8px;">Patient sex (female)</td><td style="padding:8px;">Demographic</td><td style="padding:8px;">35%</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">CS</td><td style="padding:8px;">Caregiver sex (female)</td><td style="padding:8px;">Demographic</td><td style="padding:8px;">65%</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">PE</td><td style="padding:8px;">Patient education (above threshold)</td><td style="padding:8px;">Demographic</td><td style="padding:8px;">35%</td></tr>
+        <tr><td style="padding:8px;">CE</td><td style="padding:8px;">Caregiver education (above threshold)</td><td style="padding:8px;">Demographic</td><td style="padding:8px;">50%</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Findings: Consensus, Contradictions, and Incompatibility with Data</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">The LLMs agree on six direct causal relationships. Experts agree with five, but invert the sixth in a way that reveals a fundamental difference in modeling perspectives.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/lifespace-figs/LifeSpaceCausalGraph.png" alt="Expert vs LLM consensus causal graphs" style="max-width:760px;width:100%;border-radius:8px;" /><p style="font-size:12.5px;color:#8A8477;margin:10px 0 0;">Fig. 2. Expert-constructed (left) vs. LLM consensus (right) causal graphs. Dark blue nodes = socioeconomic factors; red arrow = LLM-only inverted key edge. The key structural disagreement: experts place TB&rarr;LS; LLMs place LS&rarr;TB.</p></div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;"><b>Experts say:</b> Life-space score (LS) is the final sink &mdash; the patient outcome to improve, with sex and education as causal drivers. <b>LLMs say:</b> Caregiver burden (TB) is the final sink, consistently the ultimate outcome, excluding socioeconomic variables entirely.</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">This disparity suggests a fundamental difference in modeling perspectives, and may point to the bidirectional nature of the TB&ndash;LS relationship, requiring disaggregation across time. LLMs exclude socioeconomic factors &mdash; patient sex, caregiver sex, patient education, caregiver education &mdash; that experts identify as significant causal drivers.</p>
+
+    <h3 style="font-family:'Newsreader',serif;font-size:16px;font-weight:600;margin:24px 0 10px;">Empirical validation</h3>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We treat each graph as a model predicting conditional independencies (CIs) and test them against the data using the G-test. Since incorrectly assuming independence is more detrimental than missing a true one, we focus on Precision and False Positive Rate (FPR).</p>
+    <div style="overflow-x:auto;margin:0 0 20px;">
+    <table style="border-collapse:collapse;width:100%;font-size:13.5px;">
+      <thead><tr style="border-bottom:1px solid #D8D2C4;"><th style="text-align:left;padding:8px;">Model</th><th style="text-align:left;padding:8px;">Total CIs</th><th style="text-align:left;padding:8px;">Precision</th><th style="text-align:left;padding:8px;">FPR</th></tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Expert</td><td style="padding:8px;">113</td><td style="padding:8px;"><b>0.73</b></td><td style="padding:8px;">0.53</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">GPT</td><td style="padding:8px;">45</td><td style="padding:8px;">0.67</td><td style="padding:8px;">0.48</td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Claude</td><td style="padding:8px;">45</td><td style="padding:8px;"><b>0.73</b></td><td style="padding:8px;"><b>0.39</b></td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">Gemini</td><td style="padding:8px;">23</td><td style="padding:8px;">0.70</td><td style="padding:8px;"><b>0.33</b></td></tr>
+        <tr style="border-bottom:1px solid #E7E2D8;"><td style="padding:8px;">LLM Consensus</td><td style="padding:8px;">31</td><td style="padding:8px;">0.68</td><td style="padding:8px;">0.48</td></tr>
+        <tr><td style="padding:8px;">Overall Consensus</td><td style="padding:8px;">39</td><td style="padding:8px;">0.72</td><td style="padding:8px;">0.52</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Refinement eliminated nearly all edges, leaving fewer than three in the final graphs. The data-driven FCI baseline identified no causal edges, only three undirected associations. Neither LLM-generated nor expert-constructed graphs are compatible with the data, but <b>they are incompatible in different ways</b>, illustrating the structural differences between expert- and LLM-based causal models.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Conclusion</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Our analysis of the differences among sources of causal knowledge &mdash; domain experts, LLMs, and tiny datasets &mdash; provides a foundation for hybrid causal models. The TB&ndash;LS edge dispute illustrates that LLMs and experts encode meaningfully different assumptions about the primary patient outcome and what drives it. Understanding this interplay is essential for robust clinical decision-support systems in data-scarce, underserved populations. Three open questions follow directly:</p>
+    <ul style="font-size:15.5px;line-height:1.8;color:#3A362F;margin:0 0 20px;padding-left:22px;">
+      <li><b>Is the TB&ndash;LS edge bidirectional?</b> The disagreement may reflect a genuine feedback loop requiring temporal disaggregation rather than a single directed edge.</li>
+      <li><b>Can high-disagreement regions guide targeted elicitation?</b> The structural differences identified here could solicit more focused expert feedback and build better causal priors.</li>
+      <li><b>How do causal models for rural and Indigenous populations differ from urban ones?</b> Understanding these differences has direct implications for intervention design in underserved communities.</li>
+    </ul>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Citation</h2>
+    <pre style="background:#F1EDE3;border-radius:8px;padding:16px;font-size:12.5px;overflow-x:auto;line-height:1.5;">@inproceedings{singh2026lifespace,
+  title     = {Causal Models with Tiny Data: The Case of Rural People Living with Dementia},
+  author    = {Singh, Ranveer and Mathur, Saurabh and Komarasamy, Kavimayil P.
+               and Soni, Ameet and Whetung, Cliff and Warry, Wayne
+               and Jacklin, Kristen and Blind, Melissa and Natarajan, Sriraam},
+  booktitle = {Proceedings of the 24th International Conference on
+               Artificial Intelligence in Medicine (AIME)},
+  year      = {2026},
+  note      = {Supported by NIH awards R01NS133142 and 1R21AG072566}
+}</pre>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Acknowledgements</h2>
+    <p style="font-size:13px;line-height:1.7;color:#8A8477;margin:0 0 20px;">We gratefully acknowledge the support of NIH awards R01NS133142 and 1R21AG072566.</p>
+
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;">
       <a href="assets/pdfs/AIME2026_Lifespace.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
       <a href="https://github.com/s-ranveer/AIME_Lifespace" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Code</a>

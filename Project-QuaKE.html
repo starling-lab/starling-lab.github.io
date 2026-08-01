@@ -4,6 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']]},
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js"
+      ]
+    }
+  });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><rect width="300" height="200" fill="#171C2B"/><text x="150" y="115" font-family="Georgia,serif" font-size="72" fill="#F4F1E8" text-anchor="middle">S</text></svg></template>
@@ -24,10 +45,60 @@
   <section style="max-width:860px;margin:0 auto;padding:56px 32px 80px;">
     <a href="Projects.html#precision-health" style="font-size:13px;font-weight:600;">&larr; Precision Health</a>
     <h1 style="font-family:'Newsreader',serif;font-size:34px;font-weight:500;margin:22px 0 10px;">QuaKE: Extracting Qualitative Knowledge for Early Prediction of Gestational Diabetes</h1>
-    <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Athresh Karanam, Alexander L. Hayes, Harsha Kokel, David M. Haas, Sriraam Natarajan &middot; AIME 2021</p>
+    <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Athresh Karanam, Alexander L. Hayes, Harsha Kokel, David M. Haas, Predrag Radivojac, Sriraam Natarajan &middot; AIME 2021</p>
     <div style="border-radius:14px;overflow:hidden;margin-bottom:32px;background:#fff;"><img src="assets/project/gdm_bn.svg" alt="QuaKE" style="width:100%;display:block;padding:24px;box-sizing:border-box;" /></div>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Statements like "risk of GDM increases with BMI" describe a monotonic influence between variables &mdash; concise, general knowledge that's hard to express as conjunctive decision rules. Rather than asking experts to supply these statements up front, we ask the reverse question: given a learned causal or probabilistic model, can we reverse-engineer this kind of qualitative knowledge automatically?</p>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">QuaKE defines metrics for the degree of monotonic and synergistic influence between variables, then extracts qualitative rules from a learned model. Applied to predicting gestational diabetes from clinical observations, the extracted rules matched a clinical expert's own judgment with 0.923 precision, with the mismatches pointing to promising directions for future study.</p>
+
+    <p style="font-size:13px;color:#8A8477;margin:0 0 20px;"><strong>Accepted</strong> at the 19th International Conference on Artificial Intelligence in Medicine (<a href="https://aime21.aimedicine.info/" target="_blank" rel="noopener">AIME 2021</a>), and published in Springer Lecture Notes in Artificial Intelligence. In this work: (1) we developed an algorithm to extract qualitative rules from a causal/probabilistic model; (2) we applied it to a dataset for predicting gestational diabetes from clinical observations; (3) we verified the rules against the prior knowledge of a clinical expert in gynecology (Dr. Haas) &mdash; finding a precision of 0.923 and suggesting some mismatched cases could be future research directions.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Qualitative Knowledge in Machine Learning</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">This work combines two project categories our group investigates: Human-Allied Artificial Intelligence and Precision Health. Consider the following statements:</p>
+    <ul style="font-size:15.5px;line-height:1.8;color:#3A362F;margin:0 0 20px;padding-left:22px;">
+      <li>Risk of lung cancer increases with the number of cigarettes smoked</li>
+      <li>Risk of high blood glucose decreases with each additional hour of sleep, up to eight</li>
+      <li>Risk of gestational diabetes (GDM) increases with BMI</li>
+    </ul>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Each statement describes how a change in one variable influences the change in another &mdash; a common result of medical studies, and highly influential in medical decision making. These are statements about <b>monotonic influence</b> (MI) between variables, denoted $X_{\prec}^{M+}Y$. Prior work asked domain experts to provide these statements up front, and empirical results show that this inductive bias makes it possible to learn good models even with little data.</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Now consider: "Increase in BMI increases the risk of high blood pressure in patients with family history of hypertension more than in patients without such family history." This is a statement about <b>synergistic influence</b> (SI) between sets of variables, ${A,B}_{\prec}^{S+}Y$. Both types of knowledge have been successfully applied as inductive bias prior to learning. Here we're interested in the reverse problem: given a causal/probabilistic world model, can we reverse-engineer the same kind of qualitative knowledge that experts have? This could be an important component for getting machines to reason and explain themselves in ways that are amenable to how humans understand the world.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Standard Rule Mining Doesn't Handle This Case</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Decision rules are close in spirit. Assuming ordinal, categorical, or binned data, a rule such as "if Systolic Blood Pressure Category = 0 and Diastolic Blood Pressure Category = 0, then Blood Pressure Category = 0" translates naturally to: "if a person's systolic blood pressure is less than 120 and diastolic blood pressure is less than 80, they have normal blood pressure."</p>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">But how should one write "risk of gestational diabetes increases with BMI" as a conjunctive rule? It's not obvious &mdash; it would require enumerating all possible values of BMI and GDM, weighting rules by outcome probability, and asserting that a monotonic increase in one implies a monotonic increase in the other. The qualitative influence statement $\text{BMI}_{\prec}^{M+}\text{GDM}$ is far more general, concerning all possible values of both variables &mdash; a single rule that concisely expresses what would take multiple decision rules.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Learning Qualitative Influence Statements: The QuaKE Algorithm</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We develop metrics to measure the degree of monotonicity and synergy, denoted $\delta_a$ (degree of monotonic influence) and $\delta_{a,b}$ (degree of synergistic influence). Both have slack $\epsilon$ hyperparameters allowing some violation of the constraints, and threshold $T$ hyperparameters tuning the degree considered a true QI statement.</p>
+    <div style="background:#F1EDE3;border-radius:8px;padding:18px 20px;font-size:13.5px;line-height:1.9;overflow-x:auto;margin:0 0 20px;">
+      <b>Input:</b> joint probability model $P(Y, \boldsymbol{X})$, label vector $Y$, ordinal feature vector $\boldsymbol{X}$, monotonic/synergistic slack parameters $\epsilon_m, \epsilon_s$, monotonic/synergistic threshold parameters $T_m, T_s$<br>
+      <b>Initialize:</b> $\boldsymbol{R} \leftarrow \emptyset$<br><br>
+      <b>for</b> $a \leftarrow 0$ to $(|\boldsymbol{X}| - 1)$ <b>do</b><br>
+      &nbsp;&nbsp;compute $\delta_a$ (degree of monotonic influence)<br>
+      &nbsp;&nbsp;<b>if</b> $\delta_a \geq T_m$ <b>then</b> $\boldsymbol{R} \leftarrow (X_{a\prec}^{M+}Y) \cup \boldsymbol{R}$<br>
+      &nbsp;&nbsp;<b>for</b> $b \leftarrow a+1$ to $(|\boldsymbol{X}| - 1)$ <b>do</b><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;compute $\delta_{a,b}$ (degree of synergistic influence)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> $\delta_{a,b} \geq T_s$ <b>then</b> $\boldsymbol{R} \leftarrow (\{X_a,X_b\}_{\prec}^{S+}Y) \cup \boldsymbol{R}$<br>
+      <b>return</b> $\boldsymbol{R}$
+    </div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Briefly: the degree of monotonic influence measures the difference in probability of $Y$ for a variable $X_a$ across combinations of its values; the synergistic calculation is similar but accounts for the context-specific influence of one variable in the presence of another. Full derivations are in Section 2 of the paper.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Application to Gestational Diabetes</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We applied this to a domain where the goal was to predict gestational diabetes from clinical observations.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/quake/quake_results_table.png" alt="QuaKE results table" style="max-width:450px;width:100%;border-radius:8px;" /></div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We extracted rules using our algorithm, and asked David M. Haas to do a similar labeling over the rules. QuaKE scored a precision of 0.923 (over five cross-validation folds) compared to Dr. Haas &mdash; good agreement with clinical knowledge in most cases, with the disagreements suggesting interesting directions for future study.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Presentation</h2>
+    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;margin:0 0 20px;"><iframe src="https://www.youtube.com/embed/-jsgV9vfwak" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Citation</h2>
+    <p style="font-size:14.5px;line-height:1.7;color:#3A362F;margin:0 0 12px;">Athresh Karanam, Alexander L. Hayes, Harsha Kokel, David M. Haas, Predrag Radivojac, and Sriraam Natarajan. (2021) <i>A Probabilistic Approach to Extract Qualitative Knowledge for Early Prediction of Gestational Diabetes</i>. In: Artificial Intelligence in Medicine. AIME 2021.</p>
+    <pre style="background:#F1EDE3;border-radius:8px;padding:16px;font-size:12.5px;overflow-x:auto;line-height:1.5;">@inproceedings{karanam2021quake,
+  author = {Athresh Karanam and Alexander L. Hayes and Harsha Kokel and David M. Haas and Predrag Radivojac and Sriraam Natarajan},
+  title = {A Probabilistic Approach to Extract Qualitative Knowledge for Early Prediction of Gestational Diabetes},
+  year = {2021},
+  booktitle = {Artificial Intelligence in Medicine}
+}</pre>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Acknowledgements</h2>
+    <p style="font-size:13px;line-height:1.7;color:#8A8477;margin:0 0 20px;">We gratefully acknowledge the support of 1R01HD101246 from NICHD and the Precision Health Initiative of Indiana University. Thanks to Rashika Ramola and Rafael Guerrero for advice during the data processing phase and their helpful discussions and feedback.</p>
+
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;">
       <a href="assets/pdfs/KaranamHayes_AIME2021.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
       <a href="assets/pdfs/KaranamHayes_AIME2021_sup.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Appendix</a>

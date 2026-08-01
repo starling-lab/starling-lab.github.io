@@ -24,14 +24,64 @@
   <section style="max-width:860px;margin:0 auto;padding:56px 32px 80px;">
     <a href="Projects.html#haai" style="font-size:13px;font-weight:600;">&larr; Human-Allied Artificial Intelligence</a>
     <h1 style="font-family:'Newsreader',serif;font-size:38px;font-weight:500;margin:22px 0 10px;">Human-guided Collaborative Problem Solving</h1>
-    <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Harsha Kokel, Mayukh Das, Sriraam Natarajan, and collaborators &middot; ICAPS 2021 / ACS 2022</p>
+    <p style="font-size:13px;color:#8A8477;margin:0 0 28px;">Harsha Kokel, Mayukh Das, Rakibul Islam, Julia Bonn, Jon Cai, Soham Dan, Anjali Narayan-Chen, Prashant Jayannavar, Janardhan Rao Doppa, Julia Hockenmaier, Sriraam Natarajan, Martha Palmer, Dan Roth &middot; ICAPS 2021 / ACS 2022</p>
     <div style="border-radius:14px;overflow:hidden;margin-bottom:32px;"><img src="assets/project/cwc.gif" alt="Lara collaborative problem solving" style="width:100%;display:block;" /></div>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;"><b>Lara</b> is our integrated system of learning, reasoning, and communication. We frame human-machine collaborative problem solving as a planning task coupled with natural-language communication: two players, an architect (human) and a builder (machine), collaborate to build target structures in a Minecraft environment via chat.</p>
-    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">The architect sees the target structure and must describe it to the builder, who cannot see it directly. Success requires bi-directional communication, the builder's ability to seek clarification, and a shared vocabulary that both players expand through experience. Lara combines a natural-language engine, a concept learner that induces generalized concepts from limited interaction, and a planner that acts on human instruction.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">What?</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">We consider <b>human-machine collaborative problem solving</b> as a planning task coupled with natural language communication. We propose a task of collaboratively building target structures in a Minecraft environment, where two players &mdash; an architect (human) and a builder (machine) &mdash; collaborate and communicate via a chat interface.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/collaborative-ps/builder-flow.png" alt="Architect and builder interaction flow" style="max-height:250px;width:auto;max-width:100%;border-radius:8px;" /></div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">The architect has access to the target structure and can see the current state of the build region. The builder (Steve, from Minecraft) can move and place/remove blocks, but has no access to the target structure &mdash; the architect must describe it entirely through chat.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Why?</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Human-machine collaborative planning is challenging: it requires shared perception of the world, sophisticated language understanding, fluent execution, bi-directional communication, and contextual understanding. For a successful build, the architect must decompose the target into smaller structures the builder knows how to construct, and the builder must interpret each instruction in context and plan its actions. The task poses three core conundrums: (1) communication between architect and builder is inherently bi-directional, (2) the builder must be able to seek clarification as needed, and (3) both players must share an initial vocabulary and expand it with experience.</p>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">How?</h2>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">Our framework has three components that interact with the Minecraft simulator: a <b>natural language engine</b> that parses utterances to a formal representation and back, a <b>concept learner</b> that induces generalized plan concepts from limited interaction, and a <b>planner</b> that solves the task based on human interaction.</p>
+    <div style="text-align:center;margin:24px 0;"><img src="assets/project/collaborative-ps/framework.png" alt="Lara framework architecture" style="max-height:350px;width:auto;max-width:100%;border-radius:8px;" /></div>
+    <p style="font-size:15.5px;line-height:1.7;color:#3A362F;margin:0 0 20px;">The following video demonstrates our framework.</p>
+    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;margin:0 0 20px;"><iframe src="https://www.youtube.com/embed/q1pWe4aahF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Few More Demonstration Videos</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin:0 0 20px;">
+      <a href="https://youtu.be/erEvK7CTqkw" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;text-align:center;">
+        <div style="position:relative;padding-bottom:83%;height:0;overflow:hidden;border-radius:8px;margin-bottom:6px;"><iframe src="https://www.youtube.com/embed/erEvK7CTqkw" title="Demonstration 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+        Demonstration 2
+      </a>
+      <a href="https://youtu.be/S7PHyIrMnBg" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;text-align:center;">
+        <div style="position:relative;padding-bottom:83%;height:0;overflow:hidden;border-radius:8px;margin-bottom:6px;"><iframe src="https://www.youtube.com/embed/S7PHyIrMnBg" title="Demonstration 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+        Demonstration 3
+      </a>
+      <a href="https://youtu.be/smgPOao915w" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;text-align:center;">
+        <div style="position:relative;padding-bottom:83%;height:0;overflow:hidden;border-radius:8px;margin-bottom:6px;"><iframe src="https://www.youtube.com/embed/smgPOao915w" title="Demonstration 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+        Demonstration 4
+      </a>
+    </div>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Citation</h2>
+    <p style="font-size:14.5px;line-height:1.7;color:#3A362F;margin:0 0 8px;">Harsha Kokel, Mayukh Das, Rakibul Islam, Julia Bonn, Jon Cai, Soham Dan, Anjali Narayan-Chen, Prashant Jayannavar, Janardhan Rao Doppa, Julia Hockenmaier, Sriraam Natarajan, Martha Palmer, and Dan Roth. (2022) <i>Lara &mdash; Human-guided collaborative problem solver: Effective integration of learning, reasoning and communication</i>. In Tenth Annual Conference on Advances in Cognitive Systems 2022.</p>
+    <p style="font-size:14.5px;line-height:1.7;color:#3A362F;margin:0 0 12px;">Harsha Kokel, Mayukh Das, Rakibul Islam, Julia Bonn, Jon Cai, Soham Dan, Anjali Narayan-Chen, Prashant Jayannavar, Janardhan Rao Doppa, Julia Hockenmaier, Sriraam Natarajan, Martha Palmer, and Dan Roth. (2021) <i>Human-guided Collaborative Problem Solving: A Natural Language based Framework</i>. In ICAPS 2021.</p>
+    <pre style="background:#F1EDE3;border-radius:8px;padding:16px;font-size:12.5px;overflow-x:auto;line-height:1.5;">@inproceedings{KokelDIBCDNJDHNPR22,
+  author = {Harsha Kokel, Mayukh Das, Rakibul Islam, Julia Bonn, Jon Cai, Soham Dan, Anjali Narayan-Chen, Prashant Jayannavar, Janardhan Rao Doppa, Julia Hockenmaier, Sriraam Natarajan, Martha Palmer, Dan Roth},
+  title = {Lara -- Human-guided collaborative problem solver: Effective integration of learning, reasoning and communication},
+  year = {2022},
+  booktitle = {Tenth Annual Conference on Advances in Cognitive Systems ({ACS})}
+}
+
+@inproceedings{KokelDIBCDNJDHNPR21,
+  author = {Harsha Kokel, Mayukh Das, Rakibul Islam, Julia Bonn, Jon Cai, Soham Dan, Anjali Narayan-Chen, Prashant Jayannavar, Janardhan Rao Doppa, Julia Hockenmaier, Sriraam Natarajan, Martha Palmer, Dan Roth},
+  title = {Human-guided Collaborative Problem Solving: A Natural Language based Framework},
+  year = {2021},
+  booktitle = {Thirty First International Conference on Automated Planning and Scheduling ({ICAPS})}
+}</pre>
+
+    <h2 style="font-family:'Newsreader',serif;font-size:19px;font-weight:600;margin:32px 0 14px;">Acknowledgements</h2>
+    <p style="font-size:13px;line-height:1.7;color:#8A8477;margin:0 0 20px;">We gratefully acknowledge the support of CwC Program Contract W911NF-15-1-0461 with the US Defense Advanced Research Projects Agency (DARPA) and the Army Research Office (ARO). Any opinions, findings and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of DARPA, ARO, or the US government.</p>
+
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;">
       <a href="assets/pdfs/Kokel_ACS2022.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Paper</a>
       <a href="assets/pdfs/Kokel_ACS2022_supp.pdf" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Appendix</a>
       <a href="https://youtu.be/q1pWe4aahF0" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">Video</a>
+      <a href="https://youtube.com/playlist?list=PLFyA0lwDE2XiE3AegTtgJ6Yr7iiaQQRr1" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid #D8D2C4;">All Demos</a>
     </div>
   </section>
   <footer style="background:#211F1C;color:#C9C2B2;"><div style="max-width:1180px;margin:0 auto;padding:40px 32px;text-align:center;"><p style="font-size:13px;margin:0;">&copy; 2026 StARLinG Lab &middot; The University of Texas at Dallas</p></div></footer>
