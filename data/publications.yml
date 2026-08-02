@@ -937,7 +937,7 @@
   year: "2015"
   title: "Transfer Learning Across Relational and Uncertain Domains: A Language-Bias Approach"
   venue: "International Workshop on Statistical Relational AI (StarAI)"
-  url: "http://homes.soic.indiana.edu/rakkumar/files/papers/STARAI15.pdf"
+  url: "/assets/pdfs/transfer_STARAI15.pdf"
   keywords: ["Statistical Relational Learning"]
 
 - publicationType: "conference-papers"
