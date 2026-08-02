@@ -58,6 +58,11 @@
               </p>
               <p style="font-size: 13px; color: #57534A; line-height: 1.5; margin: 0 0 2px;">{{ pub.authorLine }}</p>
               <p style="font-size: 12.5px; color: #8A8477; font-style: italic; margin: 0;">{{ pub.venue }}</p>
+              <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px;">
+                <sc-for list="{{ pub.links }}" as="l" hint-placeholder-count="1">
+                  <a href="{{ l.url }}" style="font-size: 12px; font-weight: 600;">{{ l.label }}</a>
+                </sc-for>
+              </div>
             </div>
           </sc-for>
         </div>
