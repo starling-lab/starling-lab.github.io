@@ -94,10 +94,10 @@ class Component extends DCLogic {
       "workshop-papers": "Workshop",
       "preprints": "Preprint"
     };
-  let pubs = this.state.publications.map(p => ({
+  let pubs = this.state.publications.filter(p => p.url).map(p => ({
     ...p,
     authorLine: p.authors.join(', '),
-    url: p.url || '#',
+    url: p.url,
     venue: p.venue || "Preprint",
     typeLabel: typeLabels[p.type] || p.type
   }));
