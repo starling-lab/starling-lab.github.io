@@ -94,14 +94,13 @@ class Component extends DCLogic {
       "workshop-papers": "Workshop",
       "preprints": "Preprint"
     };
-    let pubs = this.state.publications
-      .filter(p => p.venue)
-      .map(p => ({
-        ...p,
-        authorLine: p.authors.join(', '),
-        url: p.url || '#',
-        typeLabel: typeLabels[p.type] || p.type
-      }));
+  let pubs = this.state.publications.filter(p => p.url).map(p => ({
+    ...p,
+    authorLine: p.authors.join(', '),
+    url: p.url,
+    venue: p.venue || "Preprint",
+    typeLabel: typeLabels[p.type] || p.type
+  }));
     if (this.state.filter !== "all") pubs = pubs.filter(p => p.type === this.state.filter);
     const years = [...new Set(pubs.map(p => p.year))].sort((a, b) => b - a);
     const pinnedTitle = "Safe Offline Policy Improvement for Pediatric ECMO from Limited Clinical Data";
