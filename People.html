@@ -94,6 +94,24 @@
     </div>
   </section>
 
+    <section style="max-width: 1180px; margin: 0 auto; padding: 0 32px 56px;">
+    <h2 style="font-family: 'Newsreader', serif; font-size: 24px; font-weight: 500; margin: 0 0 24px; border-bottom: 1px solid #E7E2D8; padding-bottom: 14px;">Affiliated Members</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px;">
+      <sc-for list="{{ affiliated }}" as="p" hint-placeholder-count="16">
+        <div style="background: #FFFFFF; border: 1px solid #E7E2D8; border-radius: 14px; padding: 20px; text-align: center;">
+          <img src="{{ p.avatar }}" alt="{{ p.name }}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 12px; display: block;" />
+          <h3 style="font-size: 15px; font-weight: 600; margin: 0 0 6px;">{{ p.name }}</h3>
+          <p style="font-size: 12.5px; color: #8A8477; margin: 0 0 10px;">{{ p.location }}</p>
+          <div style="display: flex; gap: 10px; justify-content: center; font-size: 12px; font-weight: 600;">
+            <sc-for list="{{ p.links }}" as="l" hint-placeholder-count="2">
+              <a href="{{ l.url }}">{{ l.label }}</a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
   <section style="max-width: 1180px; margin: 0 auto; padding: 0 32px 76px;">
     <h2 style="font-family: 'Newsreader', serif; font-size: 24px; font-weight: 500; margin: 0 0 24px; border-bottom: 1px solid #E7E2D8; padding-bottom: 14px;">M.S. Alumni</h2>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px;">
@@ -106,17 +124,6 @@
     </div>
   </section>
 
-    <section style="max-width: 1180px; margin: 0 auto; padding: 0 32px 76px;">
-    <h2 style="font-family: 'Newsreader', serif; font-size: 24px; font-weight: 500; margin: 0 0 24px; border-bottom: 1px solid #E7E2D8; padding-bottom: 14px;">Affiliated Members</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px;">
-      <sc-for list="{{ affiliated }}" as="p" hint-placeholder-count="19">
-        <div style="background: #FFFFFF; border: 1px solid #E7E2D8; border-radius: 12px; padding: 16px 18px;">
-          <h3 style="font-size: 14px; font-weight: 600; margin: 0 0 4px;">{{ p.name }}</h3>
-          <p style="font-size: 12px; color: #8A8477; margin: 0;">{{ p.location }}</p>
-        </div>
-      </sc-for>
-    </div>
-  </section>
 
   <footer style="background: #211F1C; color: #C9C2B2;">
     <div style="max-width: 1180px; margin: 0 auto; padding: 40px 32px; text-align: center;">
@@ -200,6 +207,17 @@ class Component extends DCLogic {
           bio: "Ph.D. Computer Science 2014 (Wisconsin)",
           links: [ { label: "Website", url: "http://allenai.org/team/tushark/index.html" } ] },
       ],
+      affiliated: [
+          { name: "Ameet Soni", avatar: "assets/headshots/soni", location: "Associate Professor, Swarthmore College",
+          bio: "Affiliated Member",
+         links: [ { label: "Website", url: "https://www.cs.swarthmore.edu/~soni/" }] },
+          { name: "Gautam Kunapuli", avatar: "assets/headshots/gautamkunapuli.jpg", location: "R&D Manager, Verisk Analytics",
+          bio: "Affiliated Member",
+         links: [ { label: "Website", url: "http://www.utdallas.edu/~Gautam.Kunapuli/" }, { label: "Twitter", url: "https://twitter.com/gkunapuli" }, { label: "LinkedIn", url: "https://www.linkedin.com/in/gautam-kunapuli" } ] },
+        { name: "Kristian Kersting", avatar: "assets/headshots/kristianKersting.jpg", location: "Professor, TU Darmstadt ",
+          bio: "Affiliated Member",
+         links: [ { label: "Website", url: "https://ml-research.github.io/people/kkersting/" }] }
+        ],
       msAlumni: [
         { name: "Justin G. Dula", bio: "Computer Science (M.S.), 2022", location: "The University of Texas at Dallas" },
         { name: "Obuli Vignesh Rangasamy", bio: "Computer Science (M.S.), 2020", location: "" },
@@ -221,19 +239,7 @@ class Component extends DCLogic {
         { name: "Jose Picado", bio: "Computer Science (M.S.), 2014", location: "Oregon State University" },
         { name: "Adam Edwards", bio: "2013", location: "Ph.D. Student, UIUC" },
         { name: "Rick Freedman", bio: "2012", location: "Ph.D. Student, UMass Amherst" }
-      ],
-    
-    affiliated: [
-          { name: "Ameet Soni", avatar: "", location: "Associate Professor, Swarthmore College",
-          bio: "",
-         links: [ { label: "Website", url: "https://www.cs.swarthmore.edu/~soni/" }, { label: "Twitter", url: "" }, { label: "LinkedIn", url: "" } ] },
-          { name: "Gautam Kunapuli", avatar: "assets/headshots/gautamkunapuli.jpg", location: "R&D Manager, Verisk Analytics",
-          bio: "",
-         links: [ { label: "Website", url: "http://www.utdallas.edu/~Gautam.Kunapuli/" }, { label: "Twitter", url: "https://twitter.com/gkunapuli" }, { label: "LinkedIn", url: "https://www.linkedin.com/in/gautam-kunapuli" } ] },
-        { name: "Kristian Kersting", avatar: "", location: "Professor, TU Darmstadt ",
-          bio: "",
-         links: [ { label: "Website", url: "https://ml-research.github.io/people/kkersting/" }, { label: "Twitter", url: "" }, { label: "LinkedIn", url: "" } ] }
-        ]
+      ]
     };
   }
 }
