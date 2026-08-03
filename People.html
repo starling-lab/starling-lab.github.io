@@ -106,6 +106,18 @@
     </div>
   </section>
 
+    <section style="max-width: 1180px; margin: 0 auto; padding: 0 32px 76px;">
+    <h2 style="font-family: 'Newsreader', serif; font-size: 24px; font-weight: 500; margin: 0 0 24px; border-bottom: 1px solid #E7E2D8; padding-bottom: 14px;">Affiliated Members</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px;">
+      <sc-for list="{{ affiliated }}" as="p" hint-placeholder-count="19">
+        <div style="background: #FFFFFF; border: 1px solid #E7E2D8; border-radius: 12px; padding: 16px 18px;">
+          <h3 style="font-size: 14px; font-weight: 600; margin: 0 0 4px;">{{ p.name }}</h3>
+          <p style="font-size: 12px; color: #8A8477; margin: 0;">{{ p.location }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
   <footer style="background: #211F1C; color: #C9C2B2;">
     <div style="max-width: 1180px; margin: 0 auto; padding: 40px 32px; text-align: center;">
       <p style="font-size: 13px; margin: 0;">&copy; 2026 StARLinG Lab &middot; The University of Texas at Dallas</p>
@@ -175,9 +187,6 @@ class Component extends DCLogic {
         { name: "Devendra Singh Dhami", avatar: "assets/headshots/devendrasinghdhami.jpg", location: "Research Group Leader, hessian.AI",
           bio: "Ph.D. Computer Science 2020 (UTD)",
           links: [ { label: "Website", url: "https://sites.google.com/view/devendradhami" }, { label: "GitHub", url: "https://github.com/ddhami" }, { label: "Twitter", url: "https://twitter.com/devendratweetin" }, { label: "LinkedIn", url: "https://www.linkedin.com/in/devendra-singh-dhami-38988728" } ] },
-        { name: "Gautam Kunapuli", avatar: "assets/headshots/gautamkunapuli.jpg", location: "R&D Manager, Verisk Analytics",
-          bio: "Alumnus",
-          links: [ { label: "Website", url: "http://www.utdallas.edu/~Gautam.Kunapuli/" }, { label: "Twitter", url: "https://twitter.com/gkunapuli" }, { label: "LinkedIn", url: "https://www.linkedin.com/in/gautam-kunapuli" } ] },
         { name: "Mayukh Das", avatar: "assets/headshots/mayukhdas.jpg", location: "Senior Researcher, Microsoft",
           bio: "Ph.D. Computer Science 2019 (UTD)",
           links: [ { label: "Website", url: "https://sites.google.com/site/mayukhdas3986/" }, { label: "GitHub", url: "https://github.com/mayukhdas" }, { label: "Twitter", url: "https://twitter.com/mayukhdastweet" }, { label: "LinkedIn", url: "https://www.linkedin.com/in/mdas86" } ] },
@@ -212,7 +221,13 @@ class Component extends DCLogic {
         { name: "Jose Picado", bio: "Computer Science (M.S.), 2014", location: "Oregon State University" },
         { name: "Adam Edwards", bio: "2013", location: "Ph.D. Student, UIUC" },
         { name: "Rick Freedman", bio: "2012", location: "Ph.D. Student, UMass Amherst" }
-      ]
+      ],
+    
+    affiliated: [
+        { name: "Gautam Kunapuli", avatar: "assets/headshots/gautamkunapuli.jpg", location: "R&D Manager, Verisk Analytics",
+          bio: "Alumnus",
+         links: [ { label: "Website", url: "http://www.utdallas.edu/~Gautam.Kunapuli/" }, { label: "Twitter", url: "https://twitter.com/gkunapuli" }, { label: "LinkedIn", url: "https://www.linkedin.com/in/gautam-kunapuli" } ] }
+        ]
     };
   }
 }
