@@ -18,20 +18,25 @@
 ##   blog                        : link to project blog
 ##   poster                      : link to poster
 
-
+- publicationType: "conference-papers"
+  authors: ["Pranuthi Tenali", "Sahil Sidheekh", "Saurabh Mathur", "Vijayalakshmi Saravanan", "Erik Blasch", "Kristian Kersting", "Sriraam Natarajan"]
+  year: "2026"
+  venue: "Dynamic Data Driven Applications Systems (DDDAS) 6th International Conference"
+  url: "/assets/pdfs/Context_specific_credibility (7).pdf"
+  title: "Reliable Fusion of Conflicting Experts"
   
-- publicationType: "preprints"
+- publicationType: "conference-papers"
   authors: ["Kavimayil P. Komarasamy", "Saurabh Mathur", "Ameet Soni", "David M. Haas", "Kristian Kersting", "Sriraam Natarajan"]
   year: "2026"
   title: "Causal Modeling of Adverse Pregnancy Outcomes via Adaptive LLM Proposals"
 
   
-- publicationType: "preprints"
+- publicationType: "conference-papers"
   authors: ["Ranveer Singh", "Saurabh Mathur", "Michael A. Skinner", "Prasad Tadepalli", "Kristian Kersting", "Sriraam Natarajan"]
   year: "2026"
   title: "A Neurosymbolic Approach for Constructing Planning Domain Models from Clinical Narratives"
   
-- publicationType: "preprints"
+- publicationType: "conference-papers"
   authors: [ "Ranveer Singh", "Pranuthi Tenali", "Saurabh Mathur", "Ameet Soni", "Vaishali Phatak", "Karla Lynch", "Daniel Murman", "Matthew Rizzo", "Sriraam Natarajan"]
   year: "2026"
   title: "A Neurosymbolic Approach to Extract Qualitative Knowledge for Early Diagnosis of Alzheimer’s Disease"
