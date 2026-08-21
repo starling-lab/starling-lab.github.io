@@ -689,7 +689,7 @@ export const publications = [
     "year": "2023",
     "title": "Neurologic Statistical Prognostication and Risk Assessment for Kids on Extracorporeal Membrane Oxygenation—Neuro SPARK",
     "venue": "ASAIO Journal",
-    "url": "https://journals.lww.com/asaiojournal/abstract/9900/neurologic_statistical_prognostication_and_risk.373.aspx",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12068068/",
     "authors": [
       "Neel Shah",
       "Saurabh Mathur",
