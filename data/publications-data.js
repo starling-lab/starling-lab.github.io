@@ -2363,7 +2363,7 @@ export const publications = [
     "year": "2013",
     "title": "Learning When to Reject an Importance Sample",
     "venue": "Late-Breaking Paper (AAAI)",
-    "url": "http://pages.cs.wisc.edu/~jcweiss/aaai2013/weiss_rsis.pdf",
+    "url": "https://cdn.aaai.org/ocs/ws/ws0974/7039-30788-1-PB.pdf",
     "authors": [
       "Jeremy Weiss",
       "Sriraam Natarajan",
