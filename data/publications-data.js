@@ -130,7 +130,7 @@ export const publications = [
     "year": "2026",
     "title": "Causal Models with Tiny Data: The Case of Rural People Living with Dementia",
     "venue": "24th International Conference on Artificial Intelligence in Medicine (AIME)",
-    "url": "https://link.springer.com/chapter/10.1007/978-3-032-30710-1_45",
+    "url": "/assets/pdf/aime_lifespace",
     "authors": [
       "Ranveer Singh",
       "Saurabh Mathur",
