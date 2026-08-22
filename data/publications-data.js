@@ -2428,7 +2428,7 @@ export const publications = [
     "year": "2012",
     "title": "Accelarating Imitation Learning in Relational Domains via Transfer by Initialization",
     "venue": "International Workshop on Statistical Relational AI",
-    "url": null,
+    "url": "assets/pdfs/Imitation_StaRAI12.pdf",
     "authors": [
       "Sriraam Natarajan",
       "Phillip Odom",
