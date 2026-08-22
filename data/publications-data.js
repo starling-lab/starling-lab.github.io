@@ -988,7 +988,7 @@ export const publications = [
     "year": "2021",
     "title": "A Statistical Relational Approach to Learning Distance-based GCNs",
     "venue": "Statistical Relational AI (StarAI) Workshop at IJCLR",
-    "url": "http://lr2020.iit.demokritos.gr/online/IJCLR_2021_paper_55.pdf",
+    "url": "assets/pdfs/IJCLR_2021_paper_55.pdf",
     "authors": [
       "Devendra Singh Dhami",
       "Siwen Yan",
@@ -1121,7 +1121,7 @@ export const publications = [
     "year": "2021",
     "title": "Non-Parametric Learning of Embeddings for Relational Data using Gaifman Locality Theorem",
     "venue": "International Conference on Inductive Logic Programming (ILP)",
-    "url": "http://lr2020.iit.demokritos.gr/online/Embeddings_Gaifman_Locality_ILP_final_version.pdf",
+    "url": "assets/pdfs/Embeddings_Gaifman_Locality_ILP_final_version.pdf",
     "authors": [
       "Devendra Singh Dhami",
       "Siwen Yan",
@@ -1422,7 +1422,7 @@ export const publications = [
     "year": "2020",
     "title": "srlearn: A Python Library for Gradient-Boosted Statistical Relational Models",
     "venue": "Workshop on Statistical Relational AI (StarAI)",
-    "url": "https://hayesall.com/publications/srlearn-python-library.pdf",
+    "url": "assets/pdfs/srlearn-python-library.pdf",
     "authors": [
       "Alexander L. Hayes"
     ],
@@ -1473,7 +1473,7 @@ export const publications = [
     "year": "2019",
     "title": "Efficient Learning of Relational Gaifman Models using Probabilistic Logic",
     "venue": "Workshop on Probabilistic Logic Programming (PLP)",
-    "url": "https://drive.google.com/file/d/1GCsTavPvWSDy-MiUc8PcUngGMv11yf0f/view",
+    "url": "assets/pdfs/PLP_Gaifman.pdf",
     "authors": [
       "Devendra Singh Dhami",
       "Gautam Kunapuli",
@@ -1568,7 +1568,7 @@ export const publications = [
     "year": "2019",
     "title": "Predicting Drug-Drug Interactions from Molecular Structure Images",
     "venue": "AAAI Fall symposium - AI for Social Good",
-    "url": "https://drive.google.com/file/d/1KxG0W-U-KbRaMz4izJa_mMCG9YMgrmvW/view",
+    "url": "https://www.researchgate.net/publication/335870742_Predicting_Drug-Drug_Interactions_from_Molecular_Structure_Images",
     "authors": [
       "Devendra Singh Dhami",
       "Gautam Kunapuli",
@@ -1658,7 +1658,7 @@ export const publications = [
     "year": "2018",
     "title": "Mixed Sum-Product Networks: A Deep Architecture for Hybrid Domains",
     "venue": "In Proceedings of the Conference on Artificial Intelligence (AAAI)",
-    "url": "http://www.ml.informatik.tu-darmstadt.de/papers/molina2018aaai_mspns.pdf",
+    "url": "assets/pdfs/molina2018aaai_mspns.pdf",
     "authors": [
       "Alejandro Molina",
       "Antonio Vergari",
@@ -2227,7 +2227,7 @@ export const publications = [
     "year": "2014",
     "title": "Population Size Extrapolation in Relational Probabilistic Modelling",
     "venue": "Scalable Uncertainty Management (SUM)",
-    "url": "http://www.cs.ubc.ca/~poole/papers/SUM-2014-Poole.pdf",
+    "url": "assets/pdfs/SUM-2014-Poole.pdf",
     "authors": [
       "David Poole",
       "David Buchman",
@@ -2241,7 +2241,7 @@ export const publications = [
     "year": "2014",
     "title": "Relational Logistic Regression",
     "venue": "International Conference on Principles of Knowledge Representation and Reasoning (KR)",
-    "url": "http://www.cs.ubc.ca/~poole/papers/relational_logistic_regression.pdf",
+    "url": "assets/pdfs/relational_logistic_regression.pdf",
     "authors": [
       "Seyed Mehran Kazemi",
       "David Buchman",
@@ -2350,7 +2350,7 @@ export const publications = [
     "year": "2013",
     "title": "Learning Relational Probabilistic Models from Partially Observed Data - Opening the Closed-World Assumption",
     "venue": "International Conference on Inductive Logic Programming (ILP)",
-    "url": "https://www.ml.tu-darmstadt.de/papers/ilp2013openingCWA.pdf",
+    "url": "assets/pdfs/ilp2013openingCWA.pdf",
     "authors": [
       "Tushar Khot",
       "Sriraam Natarajan",
@@ -2456,7 +2456,7 @@ export const publications = [
     "year": "2012",
     "title": "Early Prediction of Coronary Artery Calcification Levels Using Statistical Relational Learning",
     "venue": "ICML Workshop on Machine Learning for Clinical Data Analysis",
-    "url": "http://people.cs.pitt.edu/~milos/icml_clinicaldata_2012/Papers/Oral_Natarajan_elal_ICML_Clinical_2012.pdf",
+    "url": "assets/pdfs/Oral_Natarajan_elal_ICML_Clinical_2012.pdf",
     "authors": [
       "Sriraam Natarajan",
       "Kristian Kersting",
@@ -2489,7 +2489,7 @@ export const publications = [
     "year": "2012",
     "title": "Gradient-based Boosting for Statistical Relational Learning: The Relational Dependency Network Case",
     "venue": "Invited contribution to special issue of Machine Learning Journal (MLJ)",
-    "url": "http://ftp.cs.wisc.edu/machine-learning/shavlik-group/natarajan.mlj12.pdf",
+    "url": "assets/pdfs/natarajan.mlj12.pdf",
     "authors": [
       "Sriraam Natarajan",
       "Tushar Khot",
@@ -2707,7 +2707,7 @@ export const publications = [
     "year": "2011",
     "title": "Learning Markov Logic Networks via Functional Gradient Boosting",
     "venue": "International Conference in Data Mining (ICDM)",
-    "url": "http://ftp.cs.wisc.edu/machine-learning/shavlik-group/khot.icdm11.pdf",
+    "url": "assets/pdfs/khot.icdm11.pdf",
     "authors": [
       "Tushar Khot",
       "Sriraam Natarajan",
@@ -2720,7 +2720,7 @@ export const publications = [
     "year": "2010",
     "title": "Automating the ILP Setup Task: Converting User Advice about Specific Examples into General Background Knowledge",
     "venue": "International Conference on Inductive Logic Programming (ILP)",
-    "url": "http://ftp.cs.wisc.edu/machine-learning/shavlik-group/walker.ilp10.pdf",
+    "url": "assets/pdfs/walker.ilp10.pdf",
     "authors": [
       "Trevor Walker",
       "Gautam Kunapuli",
@@ -2820,7 +2820,7 @@ export const publications = [
     "year": "2009",
     "title": "Anytime Lifted Belief Propagation",
     "venue": "International Workshop in SRL",
-    "url": "https://people.eecs.berkeley.edu/~russell/papers/srl09-lifted.pdf",
+    "url": "assets/pdfs/srl09-lifted.pdf",
     "authors": [
       "Rodrigo de Salvo Braz",
       "Sriraam Natarajan",
