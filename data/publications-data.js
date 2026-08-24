@@ -81,7 +81,7 @@ export const publications = [
     "year": "2026",
     "title": "A Neurosymbolic Approach for Constructing Planning Domain Models from Clinical Narratives",
     "venue": "",
-    "url": null,
+    "url": "https://arxiv.org/abs/2608.21186",
     "authors": [
       "Ranveer Singh",
       "Saurabh Mathur",
