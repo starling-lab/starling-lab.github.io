@@ -2,6 +2,21 @@ export const publications = [
     {
     "type": "conference-papers",
     "year": "2026",
+    "title": "Causal Modeling of Adverse Pregnancy Outcomes via Adaptive LLM Proposals",
+    "venue": "2026 IEEE International Conference on Bioinformatics and Biomedicine (BIBM)",
+    "url": "https://arxiv.org/pdf/2608.21079",
+    "authors": [
+      "Kavimayil P. Komarasamy",
+      "Saurabh Mathur",
+      "Ameet Soni",
+      "David M. Hass",
+      "Kristian Kersting",
+      "Sriraam Natarajan"
+    ]
+  },
+    {
+    "type": "conference-papers",
+    "year": "2026",
     "title": "Learning Probabilistic Logic Programs with Functional Gradient Guided Language Models",
     "venue": "6th International Joint Conference on Learning & Reasoning (IJCLR)",
     "url": "assets/pdfs/NeSy_RDNs_arxiv.pdf",
